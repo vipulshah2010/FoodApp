@@ -26,8 +26,7 @@
 
         <activity
             android:name=".foods.ui.FoodListActivity"
-            android:label="@string/app_name"
-            android:theme="@style/AppTheme.Transparent" />
+            android:label="@string/app_name" />
 
         <activity
             android:name=".details.FoodDetailsActivity"

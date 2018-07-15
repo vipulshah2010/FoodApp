@@ -19,32 +19,36 @@
         android:layout_margin="20dp"
         android:orientation="vertical">
 
-        <LinearLayout
-            android:layout_width="match_parent"
+        <FrameLayout
+            android:id="@+id/startButton"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/sign_in_btn"
+            android:clickable="true"
+            android:elevation="4dp"
+            android:focusable="true"
+            android:foreground="?selectableItemBackground"
+            android:minHeight="50dp"
+            android:text="@string/start">
 
-            <Button
-                android:layout_width="0dp"
+            <TextView
+                android:id="@+id/buttonText"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:minHeight="60dp"
-                android:text="@string/sign_up"
-                android:theme="@style/GreenButton" />
-
-            <Space
-                android:layout_width="10dp"
-                android:layout_height="wrap_content" />
-
-            <Button
-                android:id="@+id/startButton"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:minHeight="60dp"
+                android:layout_gravity="center"
                 android:text="@string/start"
-                android:theme="@style/WhiteButton" />
-        </LinearLayout>
+                android:textColor="@android:color/white"
+                android:textSize="18sp" />
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_gravity="center"
+                android:visibility="invisible" />
+
+        </FrameLayout>
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabLayout"
@@ -57,5 +61,12 @@
             app:tabIndicatorHeight="0dp" />
 
     </LinearLayout>
+
+    <View
+        android:id="@+id/reveal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/white"
+        android:visibility="invisible" />
 
 </FrameLayout>

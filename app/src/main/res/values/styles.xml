@@ -8,20 +8,9 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="AppTheme.Transparent">
-        <item name="android:windowIsTranslucent">true</item>
-        <item name="android:windowBackground">@android:color/transparent</item>
-        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
-    </style>
-
-    <style name="GreenButton" parent="Widget.AppCompat.Button.Colored">
-        <item name="android:textColor">@android:color/white</item>
+    <style name="PrimaryButton" parent="Widget.AppCompat.Button.Colored">
+        <item name="android:textColor">@color/colorAccent</item>
         <item name="colorButtonNormal">@color/colorPrimary</item>
-    </style>
-
-    <style name="WhiteButton" parent="Widget.AppCompat.Button.Colored">
-        <item name="android:textColor">@color/colorPrimary</item>
-        <item name="colorButtonNormal">@android:color/white</item>
     </style>
 
 </resources>

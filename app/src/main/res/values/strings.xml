@@ -1,9 +1,12 @@
 <resources>
     <string name="app_name">Food</string>
     <string name="sign_up">Sign up</string>
-    <string name="start">Start</string>
 
     <string name="food_quote_1">One of the very nicest things about life is the way we must regularly stop whatever it is we are doing and devote our attention to eating.</string>
     <string name="food_quote_2">Food is everything we are. It\'s an extension of nationalist feeling, ethnic feeling, your personal history, your province, your region, your tribe, your grandma. It\'s inseparable from those from the get-go.</string>
     <string name="food_quote_3">Cooking is all about people. Food is maybe the only universal thing that really has the power to bring everyone together. No matter what culture, everywhere around the world, people get together to eat.</string>
+    <string name="start">Start</string>
+    <string name="instagram">Instagram</string>
+    <string name="twitter">Twitter</string>
+    <string name="facebook">Facebook</string>
 </resources>

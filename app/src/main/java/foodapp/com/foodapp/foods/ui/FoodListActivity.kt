@@ -4,9 +4,6 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import android.view.ViewAnimationUtils
-import android.view.ViewTreeObserver
-import android.view.animation.AccelerateInterpolator
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -35,21 +32,6 @@ class FoodListActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_food_list)
-
-        containerLayout.visibility = View.INVISIBLE
-
-        val revealX = intent.getIntExtra(EXTRA_CIRCULAR_REVEAL_X, 0)
-        val revealY = intent.getIntExtra(EXTRA_CIRCULAR_REVEAL_Y, 0)
-
-        val viewTreeObserver = containerLayout.viewTreeObserver
-        if (viewTreeObserver.isAlive) {
-            viewTreeObserver.addOnGlobalLayoutListener(object : ViewTreeObserver.OnGlobalLayoutListener {
-                override fun onGlobalLayout() {
-                    revealActivity(revealX, revealY)
-                    containerLayout.viewTreeObserver.removeOnGlobalLayoutListener(this)
-                }
-            })
-        }
 
         val foodItems = arrayListOf<FoodItem>()
 
@@ -105,18 +87,4 @@ class FoodListActivity : AppCompatActivity() {
                     startActivity(FoodDetailsActivity.newInstance(this@FoodListActivity, foodItem), options.toBundle())
                 })
     }
-
-    private fun revealActivity(x: Int, y: Int) {
-        val finalRadius = (Math.max(containerLayout.width, containerLayout.height) * 1.1).toFloat()
-
-        // create the animator for this view (the start radius is zero)
-        val circularReveal = ViewAnimationUtils.createCircularReveal(containerLayout, x, y, 0f, finalRadius)
-        circularReveal.duration = 400
-        circularReveal.interpolator = AccelerateInterpolator()
-
-        // make the view visible and start the animation
-        containerLayout.visibility = View.VISIBLE
-        circularReveal.start()
-    }
-
 }

@@ -10,16 +10,64 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <ImageView
-            android:id="@+id/foodImageView"
+        <FrameLayout
+            android:id="@+id/foodImageFrameLayout"
             android:layout_width="0dp"
             android:layout_height="300dp"
-            android:contentDescription="@null"
-            android:scaleType="centerCrop"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:src="@drawable/frame3" />
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/foodImageView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:contentDescription="@null"
+                android:scaleType="centerCrop"
+                tools:src="@drawable/frame3" />
+
+            <LinearLayout
+                android:id="@+id/linearView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/white"
+                android:gravity="center_vertical"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <LinearLayout
+                    android:id="@+id/layoutButtons"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <Button
+                        style="@style/PrimaryButton"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="16dp"
+                        android:text="@string/facebook" />
+
+                    <Button
+                        style="@style/PrimaryButton"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="16dp"
+                        android:text="@string/twitter" />
+
+                    <Button
+                        style="@style/PrimaryButton"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="16dp"
+                        android:text="@string/instagram" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+        </FrameLayout>
 
         <ImageView
             android:id="@+id/profileImageView"
@@ -29,7 +77,7 @@
             android:layout_marginTop="16dp"
             android:contentDescription="@null"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/foodImageView"
+            app:layout_constraintTop_toBottomOf="@+id/foodImageFrameLayout"
             tools:srcCompat="@tools:sample/avatars" />
 
         <TextView
@@ -93,9 +141,9 @@
             android:src="@drawable/ic_svg_heart_button"
             app:backgroundTint="@android:color/white"
             app:fabSize="normal"
-            app:layout_constraintBottom_toBottomOf="@+id/foodImageView"
+            app:layout_constraintBottom_toBottomOf="@+id/foodImageFrameLayout"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/foodImageView" />
+            app:layout_constraintTop_toBottomOf="@+id/foodImageFrameLayout" />
 
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/dishesViewPager"
