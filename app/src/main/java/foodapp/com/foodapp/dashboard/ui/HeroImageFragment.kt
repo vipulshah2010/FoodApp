@@ -7,9 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.annotation.DrawableRes
+import androidx.core.app.ActivityOptionsCompat
+import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
 import com.squareup.picasso.Picasso
 import foodapp.com.foodapp.R
+import foodapp.com.foodapp.details.DishDetailsActivity
 
 class HeroImageFragment : Fragment() {
 
@@ -47,7 +50,16 @@ class HeroImageFragment : Fragment() {
 
         if (arguments!!.containsKey(ARG_IMAGE_URL)) {
             val imageUrl = arguments!!.getString(ARG_IMAGE_URL)
+            ViewCompat.setTransitionName(imageView, imageUrl)
             Picasso.get().load(imageUrl).fit().centerInside().into(imageView)
+
+            view.setOnClickListener {
+                activity?.let {
+                    val p1 = androidx.core.util.Pair.create<View, String>(imageView, imageUrl)
+                    val options = ActivityOptionsCompat.makeSceneTransitionAnimation(it, p1)
+                    startActivity(DishDetailsActivity.newInstance(it, imageUrl), options.toBundle())
+                }
+            }
             return
         }
     }

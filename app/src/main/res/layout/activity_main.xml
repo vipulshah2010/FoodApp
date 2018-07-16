@@ -29,8 +29,7 @@
             android:elevation="4dp"
             android:focusable="true"
             android:foreground="?selectableItemBackground"
-            android:minHeight="50dp"
-            android:text="@string/start">
+            android:minHeight="50dp">
 
             <TextView
                 android:id="@+id/buttonText"

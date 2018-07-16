@@ -4,7 +4,9 @@ import android.animation.Animator
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
+import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
+import android.os.Handler
 import android.view.View
 import android.view.ViewAnimationUtils
 import android.view.animation.Animation
@@ -12,20 +14,27 @@ import android.view.animation.AnimationUtils
 import android.widget.FrameLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
+import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
 import foodapp.com.foodapp.R
 import foodapp.com.foodapp.dashboard.adapter.HeroImageViewsAdapter
 import foodapp.com.foodapp.model.FoodItem
+import foodapp.com.foodapp.views.AnimationEndListener
 import foodapp.com.foodapp.views.CircleTransform
 import foodapp.com.foodapp.views.DepthPageTransformer
+import foodapp.com.foodapp.views.Utils
 import kotlinx.android.synthetic.main.activity_food_details.*
+import java.lang.Exception
+
 
 @SuppressLint("RestrictedApi")
 class FoodDetailsActivity : AppCompatActivity() {
 
     var flag = true
     var pixelDensity: Float = 0.toFloat()
-    var alphaAnimation: Animation? = null
+
+    private lateinit var appearAlphaAnimation: Animation
+    private lateinit var disappearAlphaAnimation: Animation
 
     companion object {
         private const val ARG_FOOD_ITEM = "food_item"
@@ -44,7 +53,8 @@ class FoodDetailsActivity : AppCompatActivity() {
         setContentView(R.layout.activity_food_details)
 
         pixelDensity = resources.displayMetrics.density
-        alphaAnimation = AnimationUtils.loadAnimation(this, R.anim.alpha_anim)
+        appearAlphaAnimation = AnimationUtils.loadAnimation(this, R.anim.appear_alpha_anim)
+        disappearAlphaAnimation = AnimationUtils.loadAnimation(this, R.anim.disappear_alpha_anim)
 
         votesButton.visibility = View.INVISIBLE
 
@@ -70,7 +80,22 @@ class FoodDetailsActivity : AppCompatActivity() {
         Picasso.get().load(foodItem.profileImage).transform(CircleTransform()).into(profileImageView)
         ViewCompat.setTransitionName(profileImageView, foodItem.profileImage)
 
-        Picasso.get().load(foodItem.heroImage).fit().centerCrop().into(foodImageView)
+        Picasso.get().load(foodItem.heroImage).fit().centerCrop().into(foodImageView, object : Callback {
+            override fun onError(e: Exception?) {
+                // do nothing
+            }
+
+            override fun onSuccess() {
+                Handler().postDelayed({
+                    if (foodImageView.drawable != null) {
+                        if (foodImageView.drawable is BitmapDrawable) {
+                            Utils.createPaletteAsync(this@FoodDetailsActivity, (foodImageView.drawable as BitmapDrawable).bitmap)
+                        }
+                    }
+                }, 200)
+            }
+        })
+
         ViewCompat.setTransitionName(foodImageView, foodItem.heroImage)
 
         foodDescTextView.text = foodItem.foodDescription
@@ -108,22 +133,10 @@ class FoodDetailsActivity : AppCompatActivity() {
                 val anim = ViewAnimationUtils.createCircularReveal(linearView, x, y, 0f, hypotenuse.toFloat())
                 anim.duration = 700
 
-                anim.addListener(object : Animator.AnimatorListener {
-                    override fun onAnimationStart(animator: Animator) {
-
-                    }
-
-                    override fun onAnimationEnd(animator: Animator) {
+                anim.addListener(object : AnimationEndListener() {
+                    override fun onAnimationEnd(animator: Animator?) {
                         layoutButtons.visibility = View.VISIBLE
-                        layoutButtons.startAnimation(alphaAnimation)
-                    }
-
-                    override fun onAnimationCancel(animator: Animator) {
-
-                    }
-
-                    override fun onAnimationRepeat(animator: Animator) {
-
+                        layoutButtons.startAnimation(appearAlphaAnimation)
                     }
                 })
 
@@ -134,27 +147,16 @@ class FoodDetailsActivity : AppCompatActivity() {
             } else {
 
                 val anim = ViewAnimationUtils.createCircularReveal(linearView, x, y, hypotenuse.toFloat(), 0f)
-                anim.duration = 400
+                anim.duration = 700
 
-                anim.addListener(object : Animator.AnimatorListener {
-                    override fun onAnimationStart(animator: Animator) {
-
-                    }
-
-                    override fun onAnimationEnd(animator: Animator) {
+                anim.addListener(object : AnimationEndListener() {
+                    override fun onAnimationEnd(animator: Animator?) {
                         linearView.visibility = View.GONE
-                        layoutButtons.visibility = View.GONE
-                    }
-
-                    override fun onAnimationCancel(animator: Animator) {
-
-                    }
-
-                    override fun onAnimationRepeat(animator: Animator) {
-
                     }
                 })
 
+                layoutButtons.visibility = View.GONE
+                layoutButtons.startAnimation(disappearAlphaAnimation)
                 anim.start()
                 flag = true
             }
