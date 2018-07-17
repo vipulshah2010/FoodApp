@@ -5,7 +5,9 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
 import foodapp.com.foodapp.dashboard.ui.HeroImageFragment
 
-class HeroImageViewsAdapter(private var imagesRes: ArrayList<Int>? = null, private var imagesUrls: ArrayList<String>? = null, manager: FragmentManager) : FragmentStatePagerAdapter(manager) {
+class HeroImageViewsAdapter(private var imagesRes: ArrayList<Int>? = null,
+                            private var imagesUrls: ArrayList<String>? = null,
+                            manager: FragmentManager) : FragmentStatePagerAdapter(manager) {
 
     override fun getCount(): Int {
         imagesRes?.let {

@@ -16,9 +16,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
+import foodapp.com.data.model.FoodItem
 import foodapp.com.foodapp.R
 import foodapp.com.foodapp.dashboard.adapter.HeroImageViewsAdapter
-import foodapp.com.foodapp.model.FoodItem
 import foodapp.com.foodapp.views.AnimationEndListener
 import foodapp.com.foodapp.views.CircleTransform
 import foodapp.com.foodapp.views.DepthPageTransformer

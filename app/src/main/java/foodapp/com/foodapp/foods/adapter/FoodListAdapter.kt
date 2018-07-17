@@ -10,17 +10,18 @@ import android.widget.TextView
 import androidx.core.view.ViewCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
+import foodapp.com.data.model.FoodItem
 import foodapp.com.foodapp.R
-import foodapp.com.foodapp.model.FoodItem
 import foodapp.com.foodapp.views.CircleTransform
 import kotlinx.android.synthetic.main.item_food_row.view.*
 
 
-class FoodListAdapter(private val foodItems: ArrayList<FoodItem>, private val listener: (FoodItem, ImageView, ImageView, ImageView, TextView) -> Unit)
+class FoodListAdapter(private val listener: (FoodItem, ImageView, ImageView, ImageView, TextView) -> Unit)
     : RecyclerView.Adapter<FoodListAdapter.FoodViewHolder>() {
 
     private var mHasShowedAnimation = false
     private var mHasStartedCountDown = false
+    private var foodItems: ArrayList<FoodItem> = arrayListOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FoodViewHolder =
             FoodViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_food_row, parent, false))
@@ -42,6 +43,12 @@ class FoodListAdapter(private val foodItems: ArrayList<FoodItem>, private val li
                 Handler().postDelayed({ mHasShowedAnimation = true }, 400)
             }
         }
+    }
+
+    fun setFoodItems(foodItems: List<FoodItem>) {
+        this.foodItems.clear()
+        this.foodItems.addAll(foodItems)
+        notifyDataSetChanged()
     }
 
     class FoodViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

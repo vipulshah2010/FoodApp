@@ -8,70 +8,64 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityOptionsCompat
+import dagger.android.AndroidInjection
+import foodapp.com.data.model.FoodItem
+import foodapp.com.foodapp.ErrorType
 import foodapp.com.foodapp.R
 import foodapp.com.foodapp.details.FoodDetailsActivity
 import foodapp.com.foodapp.foods.adapter.FoodListAdapter
-import foodapp.com.foodapp.model.FoodItem
 import kotlinx.android.synthetic.main.activity_food_list.*
+import javax.inject.Inject
 
+class FoodListActivity : AppCompatActivity(), FoodListContract.FoodListMVPView {
 
-class FoodListActivity : AppCompatActivity() {
+    override fun hideLoading() {
+        // do nothing
+    }
+
+    override fun onError(type: ErrorType) {
+        // do nothing
+    }
+
+    override fun showLoading() {
+        // do nothing
+    }
+
+    override fun onLoadFoodItems(foodItems: List<FoodItem>) {
+        if (foodListRecyclerView.adapter != null) {
+            (foodListRecyclerView.adapter as FoodListAdapter).setFoodItems(foodItems)
+        }
+    }
+
+    override fun onDisplayEmptyFoodItemsView() {
+        // do nothing
+    }
+
+    @Inject
+    lateinit var mPresenter: FoodListContract.FoodListPresenter<FoodListContract.FoodListMVPView>
 
     companion object {
-        private const val EXTRA_CIRCULAR_REVEAL_X = "reveal_x"
-        private const val EXTRA_CIRCULAR_REVEAL_Y = "reveal_y"
-
-        fun newInstance(context: Context, revealX: Int, revealY: Int): Intent {
-            val intent = Intent(context, FoodListActivity::class.java)
-            intent.putExtra(EXTRA_CIRCULAR_REVEAL_X, revealX)
-            intent.putExtra(EXTRA_CIRCULAR_REVEAL_Y, revealY)
-            return intent
+        fun newInstance(context: Context): Intent {
+            return Intent(context, FoodListActivity::class.java)
         }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        AndroidInjection.inject(this)
+
+        mPresenter.onAttach(this)
+
         setContentView(R.layout.activity_food_list)
 
-        val foodItems = arrayListOf<FoodItem>()
+        setupAdapter()
 
-        foodItems.add(FoodItem(
-                "https://randomuser.me/api/portraits/men/61.jpg",
-                "Jake Wharton",
-                "Today 1:45 PM",
-                1234,
-                "http://goldentimesnewwoman.com/WSIEFBT/passata%20beans%201.jpg",
-                getString(R.string.food_quote_1),
-                arrayListOf(
-                        "http://iamafoodblog.com/wp-content/uploads/2015/06/shrimp-and-zucchini-noodles-11.jpg",
-                        "http://iamafoodblog.com/wp-content/uploads/2014/10/IAM_0739w1.jpg",
-                        "http://iamafoodblog.com/wp-content/uploads/2015/03/broccoli-soba-bowl-4.jpg")))
+        mPresenter.loadFoodItems(false)
+    }
 
-        foodItems.add(FoodItem(
-                "https://randomuser.me/api/portraits/men/62.jpg",
-                "Steve Smith",
-                "Today 2:30 PM",
-                5678,
-                "http://goldentimesnewwoman.com/WSIEFBT/Samosas%20with%20chia%20filling%209.jpg",
-                getString(R.string.food_quote_2),
-                arrayListOf(
-                        "http://iamafoodblog.com/wp-content/uploads/2015/06/shrimp-and-zucchini-noodles-11.jpg",
-                        "http://iamafoodblog.com/wp-content/uploads/2014/10/IAM_0739w1.jpg",
-                        "http://iamafoodblog.com/wp-content/uploads/2015/03/broccoli-soba-bowl-4.jpg")))
-
-        foodItems.add(FoodItem(
-                "https://randomuser.me/api/portraits/men/63.jpg",
-                "Joe Root",
-                "Today 9:45 AM",
-                1145,
-                "http://goldentimesnewwoman.com/WSIEFBT/Owsianka-na-zimno-2.jpg",
-                getString(R.string.food_quote_3),
-                arrayListOf(
-                        "http://iamafoodblog.com/wp-content/uploads/2015/06/shrimp-and-zucchini-noodles-11.jpg",
-                        "http://iamafoodblog.com/wp-content/uploads/2014/10/IAM_0739w1.jpg",
-                        "http://iamafoodblog.com/wp-content/uploads/2015/03/broccoli-soba-bowl-4.jpg")))
-
-        foodListRecyclerView.adapter = FoodListAdapter(foodItems,
+    private fun setupAdapter() {
+        foodListRecyclerView.adapter = FoodListAdapter(
                 listener = { foodItem: FoodItem,
                              foodImageView: ImageView,
                              profileImageView: ImageView,

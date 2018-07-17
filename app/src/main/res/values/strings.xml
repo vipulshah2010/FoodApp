@@ -9,4 +9,13 @@
     <string name="instagram">Instagram</string>
     <string name="twitter">Twitter</string>
     <string name="facebook">Facebook</string>
+
+    <string name="inv_generic_error_title">Something went wrong</string>
+    <string name="inv_generic_error_subtitle">We are having little trouble!\nPlease try again after some time.</string>
+
+    <string name="inv_connection_error_title">Whoops!</string>
+    <string name="inv_connection_error_subtitle">No Internet connection found.\nCheck your connection or try again.</string>
+
+    <string name="inv_timeout_error_title">Oh Shucks!</string>
+    <string name="inv_timeout_error_subtitle">Slow or no internet connection!.\nPlease check your internet settings.</string>
 </resources>

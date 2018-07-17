@@ -5,8 +5,10 @@ import com.squareup.picasso.Transformation
 
 class CircleTransform : Transformation {
 
-    private val BORDER_COLOR = Color.WHITE
-    private val BORDER_RADIUS = 5
+    companion object {
+        private const val BORDER_COLOR = Color.WHITE
+        private const val BORDER_RADIUS = 5
+    }
 
     override fun transform(source: Bitmap): Bitmap {
         val size = Math.min(source.width, source.height)
