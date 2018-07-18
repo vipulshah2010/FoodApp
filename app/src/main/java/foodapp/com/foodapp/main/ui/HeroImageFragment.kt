@@ -1,4 +1,4 @@
-package foodapp.com.foodapp.dashboard.ui
+package foodapp.com.foodapp.main.ui
 
 import android.os.Bundle
 import android.text.TextUtils
@@ -12,7 +12,6 @@ import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
 import com.squareup.picasso.Picasso
 import foodapp.com.foodapp.R
-import foodapp.com.foodapp.details.DishDetailsActivity
 
 class HeroImageFragment : Fragment() {
 
@@ -57,7 +56,7 @@ class HeroImageFragment : Fragment() {
                 activity?.let {
                     val p1 = androidx.core.util.Pair.create<View, String>(imageView, imageUrl)
                     val options = ActivityOptionsCompat.makeSceneTransitionAnimation(it, p1)
-                    startActivity(DishDetailsActivity.newInstance(it, imageUrl), options.toBundle())
+                    //startActivity(DishDetailsActivity.newInstance(it, imageUrl), options.toBundle())
                 }
             }
             return

@@ -15,7 +15,7 @@
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
 
-        <activity android:name=".dashboard.ui.MainActivity">
+        <activity android:name=".main.ui.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -28,7 +28,7 @@
             android:label="@string/app_name" />
 
         <activity
-            android:name=".details.FoodDetailsActivity"
+            android:name=".details.ui.FoodDetailsActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
 
         <activity

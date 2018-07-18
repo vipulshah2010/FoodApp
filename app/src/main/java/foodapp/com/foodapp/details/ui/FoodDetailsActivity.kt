@@ -1,4 +1,4 @@
-package foodapp.com.foodapp.details
+package foodapp.com.foodapp.details.ui
 
 import android.animation.Animator
 import android.annotation.SuppressLint
@@ -10,31 +10,39 @@ import android.os.Handler
 import android.view.View
 import android.view.ViewAnimationUtils
 import android.view.animation.Animation
-import android.view.animation.AnimationUtils
 import android.widget.FrameLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
+import dagger.android.AndroidInjection
 import foodapp.com.data.model.FoodItem
 import foodapp.com.foodapp.R
-import foodapp.com.foodapp.dashboard.adapter.HeroImageViewsAdapter
+import foodapp.com.foodapp.main.adapter.HeroImageViewsAdapter
 import foodapp.com.foodapp.views.AnimationEndListener
 import foodapp.com.foodapp.views.CircleTransform
 import foodapp.com.foodapp.views.DepthPageTransformer
 import foodapp.com.foodapp.views.Utils
 import kotlinx.android.synthetic.main.activity_food_details.*
 import java.lang.Exception
+import javax.inject.Inject
+import javax.inject.Named
 
 
 @SuppressLint("RestrictedApi")
 class FoodDetailsActivity : AppCompatActivity() {
 
     var flag = true
-    var pixelDensity: Float = 0.toFloat()
 
-    private lateinit var appearAlphaAnimation: Animation
-    private lateinit var disappearAlphaAnimation: Animation
+    private var pixelDensity: Float = 0.toFloat()
+
+    @Inject
+    @field:Named("appearAlphaAnim")
+    lateinit var appearAlphaAnimation: Animation
+
+    @Inject
+    @field:Named("disappearAlphaAnim")
+    lateinit var disappearAlphaAnimation: Animation
 
     companion object {
         private const val ARG_FOOD_ITEM = "food_item"
@@ -49,31 +57,11 @@ class FoodDetailsActivity : AppCompatActivity() {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_food_details)
 
         pixelDensity = resources.displayMetrics.density
-        appearAlphaAnimation = AnimationUtils.loadAnimation(this, R.anim.appear_alpha_anim)
-        disappearAlphaAnimation = AnimationUtils.loadAnimation(this, R.anim.disappear_alpha_anim)
-
-        votesButton.visibility = View.INVISIBLE
-
-        votesButton.post {
-            // get the center for the clipping circle
-            val cx = votesButton.measuredWidth / 2
-            val cy = votesButton.measuredHeight / 2
-
-            // get the final radius for the clipping circle
-            val finalRadius = Math.max(votesButton.width, votesButton.height) / 2
-
-            // create the animator for this view (the start radius is zero)
-            val anim = ViewAnimationUtils.createCircularReveal(votesButton, cx, cy, 0f, finalRadius.toFloat())
-            anim.duration = 400
-
-            // make the view visible and start the animation
-            votesButton.visibility = View.VISIBLE
-            anim.start()
-        }
 
         val foodItem = intent.getParcelableExtra<FoodItem>(ARG_FOOD_ITEM)
 

@@ -1,9 +1,9 @@
-package foodapp.com.foodapp.dashboard.adapter
+package foodapp.com.foodapp.main.adapter
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
-import foodapp.com.foodapp.dashboard.ui.HeroImageFragment
+import foodapp.com.foodapp.main.ui.HeroImageFragment
 
 class HeroImageViewsAdapter(private var imagesRes: ArrayList<Int>? = null,
                             private var imagesUrls: ArrayList<String>? = null,

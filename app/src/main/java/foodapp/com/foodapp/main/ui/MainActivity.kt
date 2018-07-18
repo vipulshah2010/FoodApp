@@ -1,4 +1,4 @@
-package foodapp.com.foodapp.dashboard.ui
+package foodapp.com.foodapp.main.ui
 
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
@@ -10,26 +10,30 @@ import android.os.Handler
 import android.view.View
 import android.view.ViewAnimationUtils
 import androidx.appcompat.app.AppCompatActivity
+import androidx.viewpager.widget.ViewPager
+import dagger.android.AndroidInjection
 import foodapp.com.foodapp.R
-import foodapp.com.foodapp.dashboard.adapter.HeroImageViewsAdapter
 import foodapp.com.foodapp.foods.ui.FoodListActivity
-import foodapp.com.foodapp.views.DepthPageTransformer
+import foodapp.com.foodapp.main.adapter.HeroImageViewsAdapter
 import kotlinx.android.synthetic.main.activity_main.*
-
+import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
 
+    @Inject
+    lateinit var mAdapter: HeroImageViewsAdapter
+
+    @Inject
+    lateinit var mPageTransformer: ViewPager.PageTransformer
+
     override fun onCreate(savedInstanceState: Bundle?) {
+        AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
+
         setContentView(R.layout.activity_main)
 
-        val fragmentManager = supportFragmentManager
-
-        heroImagesViewPager.setPageTransformer(true, DepthPageTransformer())
-        heroImagesViewPager.adapter = HeroImageViewsAdapter(
-                imagesRes = arrayListOf(R.drawable.frame1, R.drawable.frame2, R.drawable.frame3),
-                manager = fragmentManager
-        )
+        heroImagesViewPager.setPageTransformer(true, mPageTransformer)
+        heroImagesViewPager.adapter = mAdapter
 
         tabLayout.setupWithViewPager(heroImagesViewPager, true)
 

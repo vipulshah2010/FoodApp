@@ -5,7 +5,7 @@ import foodapp.com.data.shared.network.RestApi
 import io.reactivex.Single
 import javax.inject.Inject
 
-class FoodItemsCloudDataStoreImpl @Inject constructor(private val mRestApi: RestApi) : FoodItemsDataStore {
+class FoodItemsCloudCloudDataStoreImpl @Inject constructor(private val mRestApi: RestApi) : FoodItemsCloudDataStore {
 
     override fun getFoodItems(): Single<List<FoodItem>> {
         return mRestApi.getFoodItems().map {

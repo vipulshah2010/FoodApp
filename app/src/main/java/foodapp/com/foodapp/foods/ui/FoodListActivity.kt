@@ -12,7 +12,7 @@ import dagger.android.AndroidInjection
 import foodapp.com.data.model.FoodItem
 import foodapp.com.foodapp.ErrorType
 import foodapp.com.foodapp.R
-import foodapp.com.foodapp.details.FoodDetailsActivity
+import foodapp.com.foodapp.details.ui.FoodDetailsActivity
 import foodapp.com.foodapp.foods.adapter.FoodListAdapter
 import kotlinx.android.synthetic.main.activity_food_list.*
 import javax.inject.Inject
