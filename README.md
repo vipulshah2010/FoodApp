@@ -11,4 +11,4 @@ This application is built to showcase use of Kotlin + Material Animations + Dagg
 
 | Reveal animation | Food Details Pager |
 | ---------------- | ------------------ |
-| ![screen](../master/screenshots/4_food_details_pager.png)|
+| ![screen](../master/screenshots/3_food_details_like.png)| ![](../master/screenshots/4_food_details_pager.png)
