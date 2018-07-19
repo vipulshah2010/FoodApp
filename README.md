@@ -5,7 +5,7 @@ Simple food listing application written in kotlin
 This application is built to showcase use of Kotlin + Material Animations + Dagger2 + MVP Arch + RxJava2
 
 ## Video
-[![](https://www.youtube.com/watch?v=2Nj-3V7Sj0M "FoodApp in Action")
+[Click here to see app in action](https://www.youtube.com/watch?v=2Nj-3V7Sj0M)
 
 ## Screens
 | Splash Screen  | Food Listing | Food Details |
