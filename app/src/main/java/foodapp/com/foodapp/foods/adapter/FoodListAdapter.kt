@@ -73,8 +73,6 @@ class FoodListAdapter(private val listener: (FoodItem, ImageView, ImageView, Ima
             votesTextView.text = "${foodItem.votes}"
 
             setOnClickListener { listener(foodItem, foodImageView, profileImageView, heartImageView, foodDescTextView) }
-
-            // Setup transition names
         }
     }
 }

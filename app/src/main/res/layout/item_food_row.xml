@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="5dp"
-    android:elevation="5dp"
+    android:layout_margin="@dimen/spacing_5"
+    android:elevation="@dimen/spacing_5"
     app:cardCornerRadius="0dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -14,10 +14,10 @@
 
         <ImageView
             android:id="@+id/profileImageView"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_width="@dimen/spacing_60"
+            android:layout_height="@dimen/spacing_60"
+            android:layout_marginStart="@dimen/spacing_16"
+            android:layout_marginTop="@dimen/spacing_16"
             android:contentDescription="@null"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -27,8 +27,8 @@
             android:id="@+id/nameTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginStart="@dimen/spacing_16"
+            android:layout_marginTop="@dimen/spacing_16"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
             app:layout_constraintStart_toEndOf="@+id/profileImageView"
             app:layout_constraintTop_toTopOf="parent"
@@ -38,17 +38,17 @@
             android:id="@+id/dateTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
-            android:textSize="12sp"
+            android:layout_marginTop="@dimen/spacing_2"
+            android:textSize="@dimen/text_size_12"
             app:layout_constraintStart_toStartOf="@+id/nameTextView"
             app:layout_constraintTop_toBottomOf="@+id/nameTextView"
             tools:text="@tools:sample/date/ddmmyy" />
 
         <ImageView
             android:id="@+id/heartImageView"
-            android:layout_width="14dp"
-            android:layout_height="14dp"
-            android:layout_marginStart="48dp"
+            android:layout_width="@dimen/spacing_14"
+            android:layout_height="@dimen/spacing_14"
+            android:layout_marginStart="@dimen/spacing_48"
             android:contentDescription="@null"
             app:layout_constraintBottom_toBottomOf="@+id/dateTextView"
             app:layout_constraintStart_toEndOf="@+id/dateTextView"
@@ -57,9 +57,9 @@
         <ImageView
             android:id="@+id/foodImageView"
             android:layout_width="0dp"
-            android:layout_height="200dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
+            android:layout_height="@dimen/spacing_200"
+            android:layout_marginTop="@dimen/spacing_16"
+            android:layout_marginEnd="@dimen/spacing_16"
             android:contentDescription="@null"
             android:scaleType="centerCrop"
             app:layout_constraintEnd_toEndOf="parent"
@@ -71,22 +71,22 @@
             android:id="@+id/foodDescTextView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="16dp"
+            android:layout_marginTop="@dimen/spacing_16"
+            android:layout_marginBottom="@dimen/spacing_16"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/foodImageView"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="@+id/foodImageView"
             app:layout_constraintTop_toBottomOf="@+id/foodImageView"
             app:layout_constraintVertical_bias="0.0"
-            tools:text="@string/food_quote_1" />
+            tools:text="One of the very nicest things about life is the way we must regularly stop whatever it is we are doing and devote our attention to eating." />
 
         <TextView
             android:id="@+id/votesTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:textSize="12sp"
+            android:layout_marginStart="@dimen/spacing_8"
+            android:textSize="@dimen/text_size_12"
             app:layout_constraintBottom_toBottomOf="@+id/dateTextView"
             app:layout_constraintStart_toEndOf="@+id/heartImageView"
             tools:text="@tools:sample/us_zipcodes" />

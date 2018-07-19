@@ -13,7 +13,7 @@
         <FrameLayout
             android:id="@+id/foodImageFrameLayout"
             android:layout_width="0dp"
-            android:layout_height="300dp"
+            android:layout_height="@dimen/spacing_300"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -42,13 +42,13 @@
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:orientation="vertical"
-                android:paddingTop="8dp"
-                android:paddingBottom="8dp"
+                android:paddingTop="@dimen/spacing_8"
+                android:paddingBottom="@dimen/spacing_8"
                 android:visibility="gone">
 
                 <androidx.cardview.widget.CardView
-                    android:layout_width="150dp"
-                    android:layout_height="35dp"
+                    android:layout_width="@dimen/spacing_150"
+                    android:layout_height="@dimen/spacing_35"
                     android:backgroundTint="@color/colorPrimary"
                     android:elevation="5dp">
 
@@ -63,11 +63,11 @@
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
-                    android:layout_width="150dp"
-                    android:layout_height="35dp"
-                    android:layout_marginTop="8dp"
+                    android:layout_width="@dimen/spacing_150"
+                    android:layout_height="@dimen/spacing_35"
+                    android:layout_marginTop="@dimen/spacing_8"
                     android:backgroundTint="@color/colorPrimary"
-                    android:elevation="5dp">
+                    android:elevation="@dimen/spacing_5">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -80,11 +80,11 @@
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
-                    android:layout_width="150dp"
-                    android:layout_height="35dp"
-                    android:layout_marginTop="8dp"
+                    android:layout_width="@dimen/spacing_150"
+                    android:layout_height="@dimen/spacing_35"
+                    android:layout_marginTop="@dimen/spacing_8"
                     android:backgroundTint="@color/colorPrimary"
-                    android:elevation="5dp">
+                    android:elevation="@dimen/spacing_5">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -101,10 +101,10 @@
 
         <ImageView
             android:id="@+id/profileImageView"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_width="@dimen/spacing_60"
+            android:layout_height="@dimen/spacing_60"
+            android:layout_marginStart="@dimen/spacing_16"
+            android:layout_marginTop="@dimen/spacing_16"
             android:contentDescription="@null"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/foodImageFrameLayout"
@@ -114,7 +114,7 @@
             android:id="@+id/nameTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="@dimen/spacing_16"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
             app:layout_constraintStart_toEndOf="@+id/profileImageView"
             app:layout_constraintTop_toTopOf="@+id/profileImageView"
@@ -124,17 +124,17 @@
             android:id="@+id/dateTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:textSize="12sp"
+            android:layout_marginTop="@dimen/spacing_8"
+            android:textSize="@dimen/text_size_12"
             app:layout_constraintStart_toStartOf="@+id/nameTextView"
             app:layout_constraintTop_toBottomOf="@+id/nameTextView"
             tools:text="@tools:sample/date/ddmmyy" />
 
         <ImageView
             android:id="@+id/heartImageView"
-            android:layout_width="14dp"
-            android:layout_height="14dp"
-            android:layout_marginStart="48dp"
+            android:layout_width="@dimen/spacing_14"
+            android:layout_height="@dimen/spacing_14"
+            android:layout_marginStart="@dimen/spacing_48"
             android:contentDescription="@null"
             app:layout_constraintBottom_toBottomOf="@+id/dateTextView"
             app:layout_constraintStart_toEndOf="@+id/dateTextView"
@@ -144,20 +144,20 @@
             android:id="@+id/foodDescTextView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="16dp"
+            android:layout_marginStart="@dimen/spacing_16"
+            android:layout_marginTop="@dimen/spacing_24"
+            android:layout_marginEnd="@dimen/spacing_16"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/profileImageView"
-            tools:text="@string/food_quote_1" />
+            tools:text="One of the very nicest things about life is the way we must regularly stop whatever it is we are doing and devote our attention to eating." />
 
         <TextView
             android:id="@+id/votesTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:textSize="12sp"
+            android:layout_marginStart="@dimen/spacing_8"
+            android:textSize="@dimen/text_size_12"
             app:layout_constraintBottom_toBottomOf="@+id/dateTextView"
             app:layout_constraintStart_toEndOf="@+id/heartImageView"
             tools:text="@tools:sample/us_zipcodes" />
@@ -167,7 +167,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginEnd="24dp"
+            android:layout_marginEnd="@dimen/spacing_24"
             android:src="@drawable/ic_svg_heart_button"
             app:backgroundTint="@android:color/white"
             app:fabSize="normal"
@@ -178,11 +178,11 @@
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/dishesViewPager"
             android:layout_width="0dp"
-            android:layout_height="200dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="8dp"
+            android:layout_height="@dimen/spacing_200"
+            android:layout_marginStart="@dimen/spacing_16"
+            android:layout_marginTop="@dimen/spacing_8"
+            android:layout_marginEnd="@dimen/spacing_16"
+            android:layout_marginBottom="@dimen/spacing_8"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -194,8 +194,8 @@
             android:id="@+id/tabLayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
+            android:layout_marginTop="@dimen/spacing_8"
+            android:layout_marginBottom="@dimen/spacing_8"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -208,7 +208,7 @@
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="@dimen/spacing_16"
             android:text="Similar Dishes"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             app:layout_constraintStart_toStartOf="@+id/foodDescTextView"

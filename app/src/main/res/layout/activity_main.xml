@@ -16,20 +16,20 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        android:layout_margin="20dp"
+        android:layout_margin="@dimen/spacing_20"
         android:orientation="vertical">
 
         <FrameLayout
             android:id="@+id/startButton"
-            android:layout_width="150dp"
+            android:layout_width="@dimen/spacing_150"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:background="@drawable/sign_in_btn"
             android:clickable="true"
-            android:elevation="4dp"
+            android:elevation="@dimen/spacing_4"
             android:focusable="true"
             android:foreground="?selectableItemBackground"
-            android:minHeight="50dp">
+            android:minHeight="@dimen/spacing_50">
 
             <TextView
                 android:id="@+id/buttonText"
@@ -38,12 +38,12 @@
                 android:layout_gravity="center"
                 android:text="@string/start"
                 android:textColor="@android:color/white"
-                android:textSize="18sp" />
+                android:textSize="@dimen/text_size_18" />
 
             <ProgressBar
                 android:id="@+id/progressBar"
-                android:layout_width="36dp"
-                android:layout_height="36dp"
+                android:layout_width="@dimen/spacing_36"
+                android:layout_height="@dimen/spacing_36"
                 android:layout_gravity="center"
                 android:visibility="invisible" />
 
@@ -54,7 +54,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="@dimen/spacing_16"
             app:tabBackground="@drawable/tab_selector"
             app:tabGravity="center"
             app:tabIndicatorHeight="0dp" />

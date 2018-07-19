@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.LinearLayout
 import foodapp.com.foodapp.R
-import kotlinx.android.synthetic.main.layout_placeholder_empty_view.view.*
+import kotlinx.android.synthetic.main.layout_placeholder_view.view.*
 import org.jetbrains.anko.imageResource
 
 class PlaceholderView : FrameLayout {
@@ -22,7 +22,7 @@ class PlaceholderView : FrameLayout {
 
     private fun initialize() {
         layoutParams = LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
-        View.inflate(context, R.layout.layout_placeholder_empty_view, this)
+        View.inflate(context, R.layout.layout_placeholder_view, this)
     }
 
     fun showEmptyView(show: Boolean = true) {

@@ -62,7 +62,7 @@ public class FoodListPresenterTest {
     }
 
     @Test
-    public void loadCategories() {
+    public void loadFoodItems() {
 
         List<FoodItem> foodItems = new ArrayList<>();
         foodItems.add(new FoodItem());
