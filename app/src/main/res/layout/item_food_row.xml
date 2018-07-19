@@ -61,7 +61,6 @@
             android:layout_marginTop="@dimen/spacing_16"
             android:layout_marginEnd="@dimen/spacing_16"
             android:contentDescription="@null"
-            android:scaleType="centerCrop"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/profileImageView"
             app:layout_constraintTop_toBottomOf="@+id/profileImageView"

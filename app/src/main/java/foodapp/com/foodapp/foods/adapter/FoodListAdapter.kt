@@ -59,6 +59,7 @@ class FoodListAdapter(private val listener: (FoodItem, ImageView, ImageView, Ima
             ViewCompat.setTransitionName(profileImageView, foodItem.profileImage)
 
             Picasso.get().load(foodItem.heroImage).fit().noFade().centerCrop().into(foodImageView)
+
             ViewCompat.setTransitionName(foodImageView, foodItem.heroImage)
 
             foodDescTextView.text = foodItem.foodDescription
