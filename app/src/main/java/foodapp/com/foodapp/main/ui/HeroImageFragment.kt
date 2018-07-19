@@ -43,14 +43,14 @@ class HeroImageFragment : Fragment() {
 
         if (arguments!!.containsKey(ARG_IMAGE_RES)) {
             val imageRes = arguments!!.getInt(ARG_IMAGE_RES)
-            Picasso.get().load(imageRes).fit().centerInside().into(imageView)
+            Picasso.get().load(imageRes).fit().noFade().centerInside().into(imageView)
             return
         }
 
         if (arguments!!.containsKey(ARG_IMAGE_URL)) {
             val imageUrl = arguments!!.getString(ARG_IMAGE_URL)
             ViewCompat.setTransitionName(imageView, imageUrl)
-            Picasso.get().load(imageUrl).fit().centerInside().into(imageView)
+            Picasso.get().load(imageUrl).fit().noFade().centerInside().into(imageView)
 
             view.setOnClickListener {
                 activity?.let {

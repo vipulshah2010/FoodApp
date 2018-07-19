@@ -31,15 +31,14 @@ open class BasePresenter<V : MvpView> : MvpPresenter<V> {
         }
     }
 
-    fun handleError(throwable: Throwable) {
-        if (ErrorUtils.isConnectionError(throwable)) {
-            mvpView!!.onError(ErrorType.CONNECTION_ERROR)
-        } else if (ErrorUtils.isTimeOut(throwable)) {
-            mvpView!!.onError(ErrorType.TIMEOUT_ERROR)
-        } else if (ErrorUtils.isServerError(throwable)) {
-            mvpView!!.onError(ErrorType.SERVER_ERROR)
-        } else if (ErrorUtils.isClientError(throwable)) {
-            mvpView!!.onError(ErrorType.CLIENT_ERROR)
-        }
-    }
+    fun handleError(throwable: Throwable) =
+            when {
+                ErrorUtils.isConnectionError(throwable) -> mvpView!!.onError(ErrorType.CONNECTION_ERROR)
+                ErrorUtils.isTimeOut(throwable) -> mvpView!!.onError(ErrorType.TIMEOUT_ERROR)
+                ErrorUtils.isServerError(throwable) -> mvpView!!.onError(ErrorType.SERVER_ERROR)
+                ErrorUtils.isClientError(throwable) -> mvpView!!.onError(ErrorType.CLIENT_ERROR)
+                else -> {
+                    mvpView!!.onError(ErrorType.CONNECTION_ERROR)
+                }
+            }
 }

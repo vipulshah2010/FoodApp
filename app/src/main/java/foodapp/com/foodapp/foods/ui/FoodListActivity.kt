@@ -19,26 +19,36 @@ import javax.inject.Inject
 
 class FoodListActivity : AppCompatActivity(), FoodListContract.FoodListMVPView {
 
-    override fun hideLoading() {
-        // do nothing
-    }
-
-    override fun onError(type: ErrorType) {
-        // do nothing
+    override fun onDisplayEmptyFoodItemsView() {
     }
 
     override fun showLoading() {
-        // do nothing
+        placeholderView.visibility = View.VISIBLE
+        foodListRecyclerView.visibility = View.GONE
+
+        placeholderView.showProgress()
     }
 
-    override fun onLoadFoodItems(foodItems: List<FoodItem>) {
-        if (foodListRecyclerView.adapter != null) {
-            (foodListRecyclerView.adapter as FoodListAdapter).setFoodItems(foodItems)
+    override fun hideLoading() {
+        placeholderView.showProgress(false)
+    }
+
+    override fun onError(type: ErrorType) {
+        foodListRecyclerView.visibility = View.GONE
+        placeholderView.showEmptyView()
+        placeholderView.setContents(type.icon, type.title, type.subtitle, R.string.inv_try_again) {
+            mPresenter.loadFoodItems(false)
         }
     }
 
-    override fun onDisplayEmptyFoodItemsView() {
-        // do nothing
+    override fun onLoadFoodItems(foodItems: List<FoodItem>) {
+        placeholderView.showEmptyView(false)
+        placeholderView.visibility = View.GONE
+        foodListRecyclerView.visibility = View.VISIBLE
+
+        if (foodListRecyclerView.adapter != null) {
+            (foodListRecyclerView.adapter as FoodListAdapter).setFoodItems(foodItems)
+        }
     }
 
     @Inject

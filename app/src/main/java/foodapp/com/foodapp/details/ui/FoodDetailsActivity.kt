@@ -65,15 +65,18 @@ class FoodDetailsActivity : AppCompatActivity() {
 
         val foodItem = intent.getParcelableExtra<FoodItem>(ARG_FOOD_ITEM)
 
-        Picasso.get().load(foodItem.profileImage).transform(CircleTransform()).into(profileImageView)
+        Picasso.get().load(foodItem.profileImage).noFade().transform(CircleTransform()).into(profileImageView)
         ViewCompat.setTransitionName(profileImageView, foodItem.profileImage)
 
-        Picasso.get().load(foodItem.heroImage).fit().centerCrop().into(foodImageView, object : Callback {
+        supportPostponeEnterTransition()
+
+        Picasso.get().load(foodItem.heroImage).fit().noFade().centerCrop().into(foodImageView, object : Callback {
             override fun onError(e: Exception?) {
-                // do nothing
+                supportStartPostponedEnterTransition()
             }
 
             override fun onSuccess() {
+                supportStartPostponedEnterTransition()
                 Handler().postDelayed({
                     if (foodImageView.drawable != null) {
                         if (foodImageView.drawable is BitmapDrawable) {

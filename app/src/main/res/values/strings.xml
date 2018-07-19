@@ -18,4 +18,6 @@
 
     <string name="inv_timeout_error_title">Oh Shucks!</string>
     <string name="inv_timeout_error_subtitle">Slow or no internet connection!.\nPlease check your internet settings.</string>
+
+    <string name="inv_try_again">Try Again</string>
 </resources>

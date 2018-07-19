@@ -24,7 +24,7 @@
                 android:layout_height="match_parent"
                 android:contentDescription="@null"
                 android:scaleType="centerCrop"
-                tools:src="@drawable/frame3" />
+                tools:src="@drawable/frame2" />
 
             <FrameLayout
                 android:id="@+id/linearView"

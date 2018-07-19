@@ -55,10 +55,10 @@ class FoodListAdapter(private val listener: (FoodItem, ImageView, ImageView, Ima
 
         fun bind(foodItem: FoodItem, listener: (FoodItem, ImageView, ImageView, ImageView, TextView) -> Unit) = with(itemView) {
 
-            Picasso.get().load(foodItem.profileImage).transform(CircleTransform()).into(profileImageView)
+            Picasso.get().load(foodItem.profileImage).noFade().transform(CircleTransform()).into(profileImageView)
             ViewCompat.setTransitionName(profileImageView, foodItem.profileImage)
 
-            Picasso.get().load(foodItem.heroImage).fit().centerCrop().into(foodImageView)
+            Picasso.get().load(foodItem.heroImage).fit().noFade().centerCrop().into(foodImageView)
             ViewCompat.setTransitionName(foodImageView, foodItem.heroImage)
 
             foodDescTextView.text = foodItem.foodDescription

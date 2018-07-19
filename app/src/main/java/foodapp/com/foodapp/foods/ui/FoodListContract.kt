@@ -8,7 +8,6 @@ class FoodListContract {
 
     interface FoodListMVPView : MvpView {
         fun onLoadFoodItems(foodItems: List<FoodItem>)
-
         fun onDisplayEmptyFoodItemsView()
     }
 
