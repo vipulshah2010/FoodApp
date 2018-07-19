@@ -70,7 +70,7 @@ class FoodDetailsActivity : AppCompatActivity() {
 
         supportPostponeEnterTransition()
 
-        Picasso.get().load(foodItem.heroImage).fit().noFade().centerCrop().into(foodImageView, object : Callback {
+        Picasso.get().load(foodItem.heroImage).fit().noFade().placeholder(R.drawable.ic_svg_food).centerCrop().into(foodImageView, object : Callback {
             override fun onError(e: Exception?) {
                 supportStartPostponedEnterTransition()
             }

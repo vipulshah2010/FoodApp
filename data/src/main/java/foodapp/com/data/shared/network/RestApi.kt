@@ -6,6 +6,6 @@ import retrofit2.http.GET
 
 interface RestApi {
 
-    @GET("cqFuXseWXm")
+    @GET("bVKAwQVsSW")
     fun getFoodItems(): Single<FoodItems>
 }

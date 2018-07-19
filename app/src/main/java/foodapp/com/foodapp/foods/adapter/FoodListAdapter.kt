@@ -58,7 +58,7 @@ class FoodListAdapter(private val listener: (FoodItem, ImageView, ImageView, Ima
             Picasso.get().load(foodItem.profileImage).noFade().transform(CircleTransform()).into(profileImageView)
             ViewCompat.setTransitionName(profileImageView, foodItem.profileImage)
 
-            Picasso.get().load(foodItem.heroImage).fit().noFade().centerCrop().into(foodImageView)
+            Picasso.get().load(foodItem.heroImage).fit().placeholder(R.drawable.ic_svg_food).noFade().centerCrop().into(foodImageView)
 
             ViewCompat.setTransitionName(foodImageView, foodItem.heroImage)
 

@@ -61,10 +61,10 @@
             android:layout_marginTop="@dimen/spacing_16"
             android:layout_marginEnd="@dimen/spacing_16"
             android:contentDescription="@null"
+            android:scaleType="center"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/profileImageView"
-            app:layout_constraintTop_toBottomOf="@+id/profileImageView"
-            tools:srcCompat="@drawable/frame1" />
+            app:layout_constraintTop_toBottomOf="@+id/profileImageView" />
 
         <TextView
             android:id="@+id/foodDescTextView"
