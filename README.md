@@ -1,8 +1,11 @@
-# FoodApp
+## FoodApp
 
 Simple food listing application written in kotlin
 
-This application is built to showcase use of Kotlin + Material Animations + Dagger2 + MVP Arch + RxJava2
+## Description
+This application is built to showcase use of Kotlin + Material Animations + Dagger2 + MVP Arch + RxJava2 + Unit test cases for using RxJava TestScheduler. 
+
+App displays list of food items in RecyclerView and displays food details on next screen (Circular reveal animation for screen transition)
 
 ## Video
 [Click here to see app in action](https://www.youtube.com/watch?v=2Nj-3V7Sj0M)
@@ -15,3 +18,4 @@ This application is built to showcase use of Kotlin + Material Animations + Dagg
 | Reveal animation | Food Details Pager |
 | ---------------- | ------------------ |
 | ![screen](../master/screenshots/3_food_details_like.png)| ![](../master/screenshots/4_food_details_pager.png)
+
