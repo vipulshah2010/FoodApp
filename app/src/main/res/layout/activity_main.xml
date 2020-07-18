@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".main.ui.MainActivity">
+    tools:context=".ui.splash.SplashActivity">
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/heroImagesViewPager"
@@ -55,6 +55,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="@dimen/spacing_16"
+            android:background="@android:color/transparent"
             app:tabBackground="@drawable/tab_selector"
             app:tabGravity="center"
             app:tabIndicatorHeight="0dp" />

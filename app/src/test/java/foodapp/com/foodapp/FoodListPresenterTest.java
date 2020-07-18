@@ -12,15 +12,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import foodapp.com.data.model.FoodItem;
-import foodapp.com.data.repository.FoodItemsRepository;
-import foodapp.com.data.repository.FoodItemsRepositoryImpl;
+import foodapp.com.data.repository.FoodRepository;
+import foodapp.com.data.repository.FoodRepositoryImpl;
 import foodapp.com.data.shared.ExecutionThread;
 import foodapp.com.data.shared.PostExecutionThread;
-import foodapp.com.data.store.local.FoodItemsLocalDataStore;
-import foodapp.com.data.store.remote.FoodItemsCloudDataStore;
-import foodapp.com.domain.fooditems.GetFoodItemsInteractor;
+import foodapp.com.data.store.local.LocalDataStore;
+import foodapp.com.data.store.remote.CloudDataStore;
+import foodapp.com.domain.fooditems.FoodUsecase;
 import foodapp.com.foodapp.foods.ui.FoodListContract;
-import foodapp.com.foodapp.foods.ui.FoodListPresenterImpl;
+import foodapp.com.foodapp.ui.list.FoodListPresenterImpl;
 import io.reactivex.Single;
 import io.reactivex.schedulers.TestScheduler;
 
@@ -39,11 +39,11 @@ public class FoodListPresenterTest {
 
     @Mock
     private
-    FoodItemsLocalDataStore localDataStore;
+    LocalDataStore localDataStore;
 
     @Mock
     private
-    FoodItemsCloudDataStore remoteDataStore;
+    CloudDataStore remoteDataStore;
 
     @Mock
     private
@@ -71,9 +71,9 @@ public class FoodListPresenterTest {
         Mockito.when(localDataStore.getFoodItems()).thenReturn(Single.just(foodItems));
         Mockito.when(remoteDataStore.getFoodItems()).thenReturn(Single.just(foodItems));
 
-        FoodItemsRepository foodItemsRepository = new FoodItemsRepositoryImpl(localDataStore, remoteDataStore);
+        FoodRepository foodRepository = new FoodRepositoryImpl(localDataStore, remoteDataStore);
 
-        GetFoodItemsInteractor interactor = new GetFoodItemsInteractor(foodItemsRepository, executionThread, postExecutionThread);
+        FoodUsecase interactor = new FoodUsecase(foodRepository, executionThread, postExecutionThread);
 
         FoodListContract.FoodListPresenter<FoodListContract.FoodListMVPView> presenter = new FoodListPresenterImpl<>(interactor);
         presenter.onAttach(mvpView);

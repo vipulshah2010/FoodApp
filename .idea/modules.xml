@@ -2,10 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/FoodApp.iml" filepath="$PROJECT_DIR$/FoodApp.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/data/data.iml" filepath="$PROJECT_DIR$/data/data.iml" />
-      <module fileurl="file://$PROJECT_DIR$/domain/domain.iml" filepath="$PROJECT_DIR$/domain/domain.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/FoodApp.iml" filepath="$PROJECT_DIR$/.idea/modules/FoodApp.iml" group="FoodApp" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/FoodApp_buildSrc.iml" filepath="$PROJECT_DIR$/.idea/modules/FoodApp_buildSrc.iml" group="FoodApp/FoodApp_buildSrc" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/app.iml" group="FoodApp/app" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/data/data.iml" filepath="$PROJECT_DIR$/.idea/modules/data/data.iml" group="FoodApp/data" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/domain/domain.iml" filepath="$PROJECT_DIR$/.idea/modules/domain/domain.iml" group="FoodApp/domain" />
     </modules>
   </component>
 </project>

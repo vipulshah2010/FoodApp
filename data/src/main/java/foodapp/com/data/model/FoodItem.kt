@@ -10,14 +10,14 @@ import java.util.*
 @Parcelize
 data class FoodItem(
         @PrimaryKey var id: String = UUID.randomUUID().toString(),
-        var carbs: String = "",
-        var profileImage: String = "",
-        var name: String = "",
-        var heroImage: String = "",
-        var calories: Int = 0,
-        var votes: Int = 0,
-        var foodImages: ArrayList<String> = arrayListOf(),
-        var foodDescription: String = "",
-        var cholesterol: String = "",
-        var date: String = ""
+        val carbs: String,
+        val profileImage: String,
+        val name: String,
+        val heroImage: String,
+        val calories: Int,
+        val votes: Int,
+        val foodImages: ArrayList<String> = arrayListOf(),
+        val foodDescription: String,
+        val cholesterol: String,
+        var date: String
 ) : Parcelable

@@ -3,5 +3,5 @@ package foodapp.com.data.qualifiers
 import javax.inject.Qualifier
 
 @Qualifier
-@kotlin.annotation.Retention(AnnotationRetention.RUNTIME)
+@Retention(AnnotationRetention.BINARY)
 annotation class NetworkReadTimeout
