@@ -1,14 +1,12 @@
 package foodapp.com.data.repository
 
 import foodapp.com.data.DispatcherProvider
+import foodapp.com.data.FoodResult
 import foodapp.com.data.model.FoodItem
 import foodapp.com.data.store.local.LocalDataStore
 import foodapp.com.data.store.remote.CloudDataStore
 import kotlinx.coroutines.FlowPreview
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flatMapConcat
-import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.flow.*
 import javax.inject.Inject
 
 class FoodRepositoryImpl @Inject
@@ -18,14 +16,15 @@ constructor(private val localDataStore: LocalDataStore,
 
     override fun getFoodItem(id: String) = localDataStore
             .getFoodItem(id)
+            .map { FoodResult.Success((it)) }
             .flowOn(dispatcher.io)
 
     @FlowPreview
-    override fun getFoodItems(forceNetworkFetch: Boolean): Flow<List<FoodItem>> {
+    override fun getFoodItems(forceNetworkFetch: Boolean): Flow<FoodResult<List<FoodItem>>> {
 
         val networkThenDb = remoteCloudDataStore.getFoodItems().flatMapConcat {
             localDataStore.addFoodItems(it).flatMapConcat {
-                flow { emit(it) }
+                flow { emit(FoodResult.Success(it)) }
             }
         }.flowOn(dispatcher.io)
 
@@ -34,7 +33,7 @@ constructor(private val localDataStore: LocalDataStore,
         } else {
             localDataStore.getFoodItems().flatMapConcat {
                 if (it.count() > 0) {
-                    flow { emit(it) }
+                    flow { emit(FoodResult.Success(it)) }
                 } else {
                     networkThenDb
                 }

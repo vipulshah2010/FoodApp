@@ -33,7 +33,8 @@ class SplashFragment : Fragment() {
         }
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
+                              savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_hero_image, container, false)
     }
 
@@ -41,14 +42,14 @@ class SplashFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val imageView = view.findViewById<ImageView>(R.id.heroImageView)
 
-        if (arguments!!.containsKey(ARG_IMAGE_RES)) {
-            val imageRes = arguments!!.getInt(ARG_IMAGE_RES)
+        if (requireArguments().containsKey(ARG_IMAGE_RES)) {
+            val imageRes = requireArguments().getInt(ARG_IMAGE_RES)
             Picasso.get().load(imageRes).fit().noFade().centerCrop().into(imageView)
             return
         }
 
-        if (arguments!!.containsKey(ARG_IMAGE_URL)) {
-            val imageUrl = arguments!!.getString(ARG_IMAGE_URL)
+        if (requireArguments().containsKey(ARG_IMAGE_URL)) {
+            val imageUrl = requireArguments().getString(ARG_IMAGE_URL)
             ViewCompat.setTransitionName(imageView, imageUrl)
             Picasso.get().load(imageUrl).fit().noFade().centerCrop().into(imageView)
 

@@ -6,15 +6,13 @@ apply plugin: 'dagger.hilt.android.plugin'
 apply plugin: 'com.foodapp.plugin'
 
 android {
-    compileSdkVersion 30
     defaultConfig {
         applicationId "foodapp.com.foodapp"
-        minSdkVersion 21
-        targetSdkVersion 30
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -22,12 +20,32 @@ android {
         }
     }
 
-    android {
-        viewBinding.enabled = true
+    buildFeatures {
+        viewBinding = true
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8
+    }
+
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/license.txt'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/notice.txt'
+        exclude 'META-INF/ASL2.0'
+        exclude 'META-INF/AL2.0'
+        exclude 'META-INF/LGPL2.1'
+        exclude("META-INF/*.kotlin_module")
     }
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "com.android.support:support-core-utils:28.0.0"
+    implementation 'com.android.support:palette-v7:28.0.0'
     api project(path: ':domain')
 }

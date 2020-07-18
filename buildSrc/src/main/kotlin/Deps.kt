@@ -14,6 +14,7 @@ object Deps {
 
     // hilt
     private const val hiltVersion = "2.28.1-alpha"
+    private const val hiltViewModelVersion = "1.0.0-alpha01"
 
     // room
     private const val roomVersion = "2.2.5"
@@ -55,6 +56,8 @@ object Deps {
     // hilt
     const val hilt = "com.google.dagger:hilt-android:$hiltVersion"
     const val hiltCompiler = "com.google.dagger:hilt-android-compiler:$hiltVersion"
+    const val hiltViewModel = "androidx.hilt:hilt-lifecycle-viewmodel:$hiltViewModelVersion"
+    const val hiltViewModelCompiler = "androidx.hilt:hilt-compiler:$hiltViewModelVersion"
 
     // room
     const val room = "androidx.room:room-runtime:$roomVersion"
@@ -75,8 +78,6 @@ object Deps {
 
     // generic
     const val commonsLang = "org.apache.commons:commons-lang3:3.10"
-    const val epoxy = "com.airbnb.android:epoxy:$epoxyVersion"
-    const val epoxyProcessor = "com.airbnb.android:epoxy-processor:$epoxyVersion"
     const val gson = "com.google.code.gson:gson:2.8.6"
     const val picasso = "com.squareup.picasso:picasso:$picassoVersion"
 

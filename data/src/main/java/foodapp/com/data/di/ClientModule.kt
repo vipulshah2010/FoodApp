@@ -16,7 +16,7 @@ import javax.inject.Named
 
 @Module
 @InstallIn(ApplicationComponent::class)
-class ClientModule {
+object ClientModule {
 
     val isDebug: Boolean
         @Named("isDebug")

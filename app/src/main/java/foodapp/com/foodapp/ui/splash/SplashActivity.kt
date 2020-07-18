@@ -7,17 +7,19 @@ import android.graphics.Color
 import android.graphics.PorterDuff
 import android.os.Bundle
 import android.os.Handler
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewAnimationUtils
-import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager.widget.ViewPager
-import dagger.android.AndroidInjection
+import dagger.hilt.android.AndroidEntryPoint
 import foodapp.com.foodapp.R
-import foodapp.com.foodapp.ui.detail.list.FoodListActivity
-import kotlinx.android.synthetic.main.activity_main.*
+import foodapp.com.foodapp.base.BaseActivity
+import foodapp.com.foodapp.databinding.ActivitySplashBinding
+import foodapp.com.foodapp.ui.list.FoodListActivity
 import javax.inject.Inject
 
-class SplashActivity : AppCompatActivity() {
+@AndroidEntryPoint
+class SplashActivity : BaseActivity<ActivitySplashBinding>() {
 
     @Inject
     lateinit var mAdapter: HeroImageViewsAdapter
@@ -26,21 +28,15 @@ class SplashActivity : AppCompatActivity() {
     lateinit var mPageTransformer: ViewPager.PageTransformer
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
 
-        setContentView(R.layout.activity_main)
+        binding.heroImagesViewPager.setPageTransformer(true, mPageTransformer)
+        binding.heroImagesViewPager.adapter = mAdapter
+        binding.tabLayout.setupWithViewPager(binding.heroImagesViewPager, true)
 
-        heroImagesViewPager.setPageTransformer(true, mPageTransformer)
-        heroImagesViewPager.adapter = mAdapter
-
-        tabLayout.setupWithViewPager(heroImagesViewPager, true)
-
-        startButton.setOnClickListener {
+        binding.startButton.setOnClickListener {
             animateButton()
-
             fadeTextAndShowProgress()
-
             handleNext()
         }
     }
@@ -49,41 +45,41 @@ class SplashActivity : AppCompatActivity() {
         Handler().postDelayed({
             startRevealAnimation()
 
-            progressBar.animate().alpha(0f).setDuration(200).start()
+            binding.progressBar.animate().alpha(0f).setDuration(200).start()
 
-            Handler().postDelayed(
-                    {
-                        startActivity(FoodListActivity.newInstance(this@SplashActivity))
-                    }, 100)
+            Handler().postDelayed({
+                startActivity(FoodListActivity.newInstance(this@SplashActivity))
+            }, 100)
         }, 2000)
     }
 
     private fun startRevealAnimation() {
-        startButton.elevation = 0f
+        binding.startButton.elevation = 0f
 
-        reveal.visibility = View.VISIBLE
+        binding.reveal.visibility = View.VISIBLE
 
-        val cx = reveal.width
-        val cy = reveal.height
+        val cx = binding.reveal.width
+        val cy = binding.reveal.height
 
-        val x = (getFabWidth() / 2 + startButton.x).toInt()
-        val y = (getFabWidth() / 2 + startButton.y).toInt()
+        val x = (getFabWidth() / 2 + binding.startButton.x).toInt()
+        val y = (getFabWidth() / 2 + binding.startButton.y).toInt()
 
         val finalRadius = Math.max(cx, cy)
 
-        val circularReveal = ViewAnimationUtils.createCircularReveal(reveal, x, y, getFabWidth().toFloat(), finalRadius.toFloat())
+        val circularReveal = ViewAnimationUtils.createCircularReveal(binding.reveal, x, y,
+                getFabWidth().toFloat(), finalRadius.toFloat())
 
         circularReveal.duration = 350
         circularReveal.addListener(object : AnimatorListenerAdapter() {
             override fun onAnimationEnd(animation: Animator) {
                 super.onAnimationEnd(animation)
-                reveal.visibility = View.INVISIBLE
-                buttonText.visibility = View.VISIBLE
-                buttonText.alpha = 1f
-                startButton.elevation = 4f
-                val layoutParams = startButton.layoutParams
+                binding.reveal.visibility = View.INVISIBLE
+                binding.buttonText.visibility = View.VISIBLE
+                binding.buttonText.alpha = 1f
+                binding.startButton.elevation = 4f
+                val layoutParams = binding.startButton.layoutParams
                 layoutParams.width = (resources.displayMetrics.density * 150).toInt()
-                startButton.requestLayout()
+                binding.startButton.requestLayout()
             }
         })
 
@@ -95,7 +91,7 @@ class SplashActivity : AppCompatActivity() {
     }
 
     private fun fadeTextAndShowProgress() {
-        buttonText.animate().alpha(0f)
+        binding.buttonText.animate().alpha(0f)
                 .setDuration(250)
                 .setListener(object : AnimatorListenerAdapter() {
                     override fun onAnimationEnd(animation: Animator) {
@@ -107,23 +103,24 @@ class SplashActivity : AppCompatActivity() {
     }
 
     private fun showProgressDialog() {
-        progressBar.alpha = 1f
-        progressBar
-                .indeterminateDrawable
-                .setColorFilter(Color.parseColor("#ffffff"), PorterDuff.Mode.SRC_IN)
-        progressBar.visibility = View.VISIBLE
+        binding.progressBar.alpha = 1f
+        binding.progressBar.indeterminateDrawable
+                .setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_IN)
+        binding.progressBar.visibility = View.VISIBLE
     }
 
     private fun animateButton() {
-        val anim = ValueAnimator.ofInt(startButton.measuredWidth, getFabWidth())
+        val anim = ValueAnimator.ofInt(binding.startButton.measuredWidth, getFabWidth())
 
         anim.addUpdateListener { valueAnimator ->
             val value = valueAnimator.animatedValue as Int
-            val layoutParams = startButton.layoutParams
+            val layoutParams = binding.startButton.layoutParams
             layoutParams.width = value
-            startButton.requestLayout()
+            binding.startButton.requestLayout()
         }
         anim.duration = 250
         anim.start()
     }
+
+    override fun getBinding(inflater: LayoutInflater) = ActivitySplashBinding.inflate(inflater)
 }

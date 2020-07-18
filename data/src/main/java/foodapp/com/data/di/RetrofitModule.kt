@@ -5,9 +5,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ApplicationComponent
 import foodapp.com.data.network.RestApi
-import okhttp3.HttpUrl
 import okhttp3.OkHttpClient
-import retrofit2.CallAdapter.Factory
 import retrofit2.Converter
 import retrofit2.Retrofit
 import retrofit2.Retrofit.Builder
@@ -16,7 +14,7 @@ import javax.inject.Named
 
 @Module
 @InstallIn(ApplicationComponent::class)
-class RetrofitModule {
+object RetrofitModule {
 
     @Provides
     fun provideRestApi(retrofit: Retrofit): RestApi {
@@ -24,11 +22,10 @@ class RetrofitModule {
     }
 
     @Provides
-    fun provideRetrofit(baseUrl: HttpUrl, @Named("gson") converterFactory: Converter.Factory,
-                        callAdapterFactory: Factory, okHttpClient: OkHttpClient): Retrofit {
-        return Builder().baseUrl(baseUrl)
+    fun provideRetrofit(@Named("gson") converterFactory: Converter.Factory,
+                        okHttpClient: OkHttpClient): Retrofit {
+        return Builder().baseUrl("http://www.json-generator.com/api/json/get/")
                 .addConverterFactory(converterFactory)
-                .addCallAdapterFactory(callAdapterFactory)
                 .client(okHttpClient)
                 .build()
     }

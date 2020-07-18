@@ -8,7 +8,6 @@ import android.widget.FrameLayout
 import android.widget.LinearLayout
 import foodapp.com.foodapp.R
 import kotlinx.android.synthetic.main.layout_placeholder_view.view.*
-import org.jetbrains.anko.imageResource
 
 class PlaceholderView : FrameLayout {
 
@@ -33,7 +32,7 @@ class PlaceholderView : FrameLayout {
     }
 
     fun setContents(imageRes: Int, title: Int, subtitle: Int, buttonTitle: Int, action: () -> (Unit)) {
-        errorImageView.imageResource = imageRes
+        errorImageView.setImageResource(imageRes)
         titleTextView.text = context.getString(title)
         descriptionTextView.text = context.getString(subtitle)
         actionButton.text = context.getString(buttonTitle)

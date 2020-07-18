@@ -66,7 +66,8 @@ class FoodDetailsActivity : AppCompatActivity() {
                     Handler().postDelayed({
                         if (foodImageView.drawable != null) {
                             if (foodImageView.drawable is BitmapDrawable) {
-                                Utils.createPaletteAsync(this@FoodDetailsActivity, (foodImageView.drawable as BitmapDrawable).bitmap)
+                                Utils.createPaletteAsync(this@FoodDetailsActivity,
+                                        (foodImageView.drawable as BitmapDrawable).bitmap)
                             }
                         }
                     }, 200)
@@ -89,7 +90,8 @@ class FoodDetailsActivity : AppCompatActivity() {
             dishesViewPager.setPageTransformer(true, DepthPageTransformer())
 
             val fragmentManager = supportFragmentManager
-            dishesViewPager.adapter = HeroImageViewsAdapter(imagesUrls = foodItem.foodImages, manager = fragmentManager)
+            dishesViewPager.adapter = HeroImageViewsAdapter(imagesUrls = foodItem.foodImages,
+                    manager = fragmentManager)
 
             tabLayout.setupWithViewPager(dishesViewPager, true)
 
@@ -99,7 +101,8 @@ class FoodDetailsActivity : AppCompatActivity() {
                 val y = foodImageFrameLayout.bottom
                 x -= (28 * pixelDensity + 16 * pixelDensity).toInt()
 
-                val hypotenuse = hypot(foodImageFrameLayout.width.toDouble(), foodImageFrameLayout.height.toDouble()).toInt()
+                val hypotenuse = hypot(foodImageFrameLayout.width.toDouble(),
+                        foodImageFrameLayout.height.toDouble()).toInt()
 
                 if (flag) {
 
@@ -107,14 +110,16 @@ class FoodDetailsActivity : AppCompatActivity() {
                     parameters.height = foodImageFrameLayout.height
                     linearView.layoutParams = parameters
 
-                    val anim = ViewAnimationUtils.createCircularReveal(linearView, x, y, 0f, hypotenuse.toFloat())
+                    val anim = ViewAnimationUtils.createCircularReveal(linearView, x, y,
+                            0f, hypotenuse.toFloat())
                     anim.duration = 700
 
                     anim.addListener(object : AnimationEndListener() {
                         override fun onAnimationEnd(animator: Animator?) {
                             layoutButtons.visibility = View.VISIBLE
                             layoutButtons.startAnimation(AnimationUtils
-                                    .loadAnimation(this@FoodDetailsActivity, R.anim.appear_alpha_anim))
+                                    .loadAnimation(this@FoodDetailsActivity,
+                                            R.anim.appear_alpha_anim))
                         }
                     })
 
@@ -123,8 +128,8 @@ class FoodDetailsActivity : AppCompatActivity() {
 
                     flag = false
                 } else {
-
-                    val anim = ViewAnimationUtils.createCircularReveal(linearView, x, y, hypotenuse.toFloat(), 0f)
+                    val anim = ViewAnimationUtils.createCircularReveal(linearView, x, y,
+                            hypotenuse.toFloat(), 0f)
                     anim.duration = 700
 
                     anim.addListener(object : AnimationEndListener() {
@@ -135,7 +140,8 @@ class FoodDetailsActivity : AppCompatActivity() {
 
                     layoutButtons.visibility = View.GONE
                     layoutButtons.startAnimation(AnimationUtils
-                            .loadAnimation(this@FoodDetailsActivity, R.anim.disappear_alpha_anim))
+                            .loadAnimation(this@FoodDetailsActivity,
+                                    R.anim.disappear_alpha_anim))
                     anim.start()
                     flag = true
                 }

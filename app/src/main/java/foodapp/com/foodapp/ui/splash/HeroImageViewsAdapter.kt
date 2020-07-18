@@ -3,9 +3,7 @@ package foodapp.com.foodapp.ui.splash
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
-import dagger.hilt.android.scopes.ActivityScoped
 
-@ActivityScoped
 class HeroImageViewsAdapter(private var imagesRes: ArrayList<Int>? = null,
                             private var imagesUrls: ArrayList<String>? = null,
                             manager: FragmentManager) : FragmentStatePagerAdapter(manager,

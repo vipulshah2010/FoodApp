@@ -38,17 +38,12 @@
             <set />
           </value>
         </entry>
-        <entry key="$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
+        <entry key="$PROJECT_DIR$/app/build/generated/source/kapt/debug/foodapp/com/foodapp/FoodApp_HiltComponents.java">
           <value>
             <set />
           </value>
         </entry>
-        <entry key="$PROJECT_DIR$/app/src/main/java/foodapp/com/foodapp/AppConstants.kt">
-          <value>
-            <set />
-          </value>
-        </entry>
-        <entry key="$PROJECT_DIR$/app/src/main/java/foodapp/com/foodapp/FoodApp.kt">
+        <entry key="$PROJECT_DIR$/app/src/main/java/foodapp/com/foodapp/base/BaseActivity.kt">
           <value>
             <set />
           </value>
@@ -69,6 +64,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/foodapp/com/foodapp/di/AppModule.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/foodapp/com/foodapp/di/MainActivityModule.kt">
           <value>
             <set />
           </value>
@@ -123,11 +123,6 @@
             <set />
           </value>
         </entry>
-        <entry key="$PROJECT_DIR$/app/src/main/java/foodapp/com/foodapp/ui/detail/FoodDetailsActivity.kt">
-          <value>
-            <set />
-          </value>
-        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/foodapp/com/foodapp/ui/detail/list/FoodListActivity.kt">
           <value>
             <set />
@@ -138,22 +133,17 @@
             <set />
           </value>
         </entry>
-        <entry key="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
+        <entry key="$PROJECT_DIR$/app/src/main/java/foodapp/com/foodapp/ui/list/FoodListPresenterImpl.kt">
           <value>
             <set />
           </value>
         </entry>
-        <entry key="$PROJECT_DIR$/app/src/main/res/values/styles.xml">
+        <entry key="$PROJECT_DIR$/app/src/main/java/foodapp/com/foodapp/ui/splash/SplashActivity.kt">
           <value>
             <set />
           </value>
         </entry>
-        <entry key="$PROJECT_DIR$/app/src/main/res/xml/network_security_config.xml">
-          <value>
-            <set />
-          </value>
-        </entry>
-        <entry key="$PROJECT_DIR$/build.gradle">
+        <entry key="$PROJECT_DIR$/app/src/main/java/foodapp/com/foodapp/ui/views/PlaceholderView.kt">
           <value>
             <set />
           </value>
@@ -178,12 +168,12 @@
             <set />
           </value>
         </entry>
-        <entry key="$PROJECT_DIR$/buildSrc/src/main/resources/META-INF/gradle-plugins/com.foodapp.plugin.properties">
+        <entry key="$PROJECT_DIR$/data/build.gradle">
           <value>
             <set />
           </value>
         </entry>
-        <entry key="$PROJECT_DIR$/data/build.gradle">
+        <entry key="$PROJECT_DIR$/data/build/generated/source/kapt/debug/foodapp/com/data/di/RetrofitModule_ProvideRetrofitFactory.java">
           <value>
             <set />
           </value>
@@ -193,12 +183,22 @@
             <set />
           </value>
         </entry>
-        <entry key="$PROJECT_DIR$/data/src/main/java/foodapp/com/data/DispatcherProviderImpl.kt">
+        <entry key="$PROJECT_DIR$/data/src/main/java/foodapp/com/data/DispatcherProvider.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/data/src/main/java/foodapp/com/data/FoodDataModule.kt">
           <value>
             <set />
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/data/src/main/java/foodapp/com/data/FoodItemEntityConverters.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/data/src/main/java/foodapp/com/data/Result.kt">
           <value>
             <set />
           </value>
@@ -213,17 +213,12 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/data/src/main/java/foodapp/com/data/di/FoodDataModule.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/data/src/main/java/foodapp/com/data/di/RetrofitModule.kt">
-          <value>
-            <set />
-          </value>
-        </entry>
-        <entry key="$PROJECT_DIR$/data/src/main/java/foodapp/com/data/model/FoodItem.kt">
-          <value>
-            <set />
-          </value>
-        </entry>
-        <entry key="$PROJECT_DIR$/data/src/main/java/foodapp/com/data/model/FoodItems.kt">
           <value>
             <set />
           </value>
@@ -233,27 +228,22 @@
             <set />
           </value>
         </entry>
-        <entry key="$PROJECT_DIR$/data/src/main/java/foodapp/com/data/network/RestApi.kt">
-          <value>
-            <set />
-          </value>
-        </entry>
         <entry key="$PROJECT_DIR$/data/src/main/java/foodapp/com/data/network/RetrofitModule.kt">
           <value>
             <set />
           </value>
         </entry>
-        <entry key="$PROJECT_DIR$/data/src/main/java/foodapp/com/data/qualifiers/NetworkConnectTimeout.kt">
+        <entry key="$PROJECT_DIR$/data/src/main/java/foodapp/com/data/repository/DispatcherImpl.kt">
           <value>
             <set />
           </value>
         </entry>
-        <entry key="$PROJECT_DIR$/data/src/main/java/foodapp/com/data/qualifiers/NetworkReadTimeout.kt">
+        <entry key="$PROJECT_DIR$/data/src/main/java/foodapp/com/data/repository/DispatcherProviderImpl.kt">
           <value>
             <set />
           </value>
         </entry>
-        <entry key="$PROJECT_DIR$/data/src/main/java/foodapp/com/data/qualifiers/OkHttpRequestInterceptor.kt">
+        <entry key="$PROJECT_DIR$/data/src/main/java/foodapp/com/data/repository/DispatcherProviderImplImpl.kt">
           <value>
             <set />
           </value>
@@ -264,16 +254,6 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/data/src/main/java/foodapp/com/data/repository/FoodItemsRepositoryImpl.kt">
-          <value>
-            <set />
-          </value>
-        </entry>
-        <entry key="$PROJECT_DIR$/data/src/main/java/foodapp/com/data/repository/FoodRepository.kt">
-          <value>
-            <set />
-          </value>
-        </entry>
-        <entry key="$PROJECT_DIR$/data/src/main/java/foodapp/com/data/repository/FoodRepositoryImpl.kt">
           <value>
             <set />
           </value>
@@ -293,11 +273,6 @@
             <set />
           </value>
         </entry>
-        <entry key="$PROJECT_DIR$/data/src/main/java/foodapp/com/data/store/local/FoodDao.kt">
-          <value>
-            <set />
-          </value>
-        </entry>
         <entry key="$PROJECT_DIR$/data/src/main/java/foodapp/com/data/store/local/FoodItemsDao.kt">
           <value>
             <set />
@@ -309,26 +284,6 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/data/src/main/java/foodapp/com/data/store/local/FoodItemsLocalDataStoreImpl.kt">
-          <value>
-            <set />
-          </value>
-        </entry>
-        <entry key="$PROJECT_DIR$/data/src/main/java/foodapp/com/data/store/local/LocalDataStore.kt">
-          <value>
-            <set />
-          </value>
-        </entry>
-        <entry key="$PROJECT_DIR$/data/src/main/java/foodapp/com/data/store/local/LocalDataStoreImpl.kt">
-          <value>
-            <set />
-          </value>
-        </entry>
-        <entry key="$PROJECT_DIR$/data/src/main/java/foodapp/com/data/store/remote/CloudCloudDataStoreImpl.kt">
-          <value>
-            <set />
-          </value>
-        </entry>
-        <entry key="$PROJECT_DIR$/data/src/main/java/foodapp/com/data/store/remote/CloudDataStore.kt">
           <value>
             <set />
           </value>
