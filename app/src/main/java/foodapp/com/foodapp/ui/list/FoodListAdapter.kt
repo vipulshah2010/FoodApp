@@ -10,11 +10,11 @@ import android.widget.TextView
 import androidx.core.view.ViewCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
+import dagger.hilt.android.scopes.ActivityRetainedScoped
 import foodapp.com.data.model.FoodItem
 import foodapp.com.foodapp.R
 import foodapp.com.foodapp.ui.views.CircleTransform
 import kotlinx.android.synthetic.main.item_food_row.view.*
-
 
 class FoodListAdapter(private val listener: (FoodItem, ImageView, ImageView, ImageView, TextView) -> Unit)
     : RecyclerView.Adapter<FoodListAdapter.FoodViewHolder>() {

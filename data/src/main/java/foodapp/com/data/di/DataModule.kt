@@ -4,8 +4,8 @@ import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ApplicationComponent
-import foodapp.com.data.DispatcherProvider
-import foodapp.com.data.repository.DispatcherProviderImpl
+import foodapp.com.data.dispatcher.DispatcherProvider
+import foodapp.com.data.dispatcher.DispatcherProviderImpl
 import foodapp.com.data.repository.FoodRepository
 import foodapp.com.data.repository.FoodRepositoryImpl
 import foodapp.com.data.store.local.LocalDataStore

@@ -1,7 +1,7 @@
 package foodapp.com.data.repository
 
-import foodapp.com.data.DispatcherProvider
 import foodapp.com.data.FoodResult
+import foodapp.com.data.dispatcher.DispatcherProvider
 import foodapp.com.data.model.FoodItem
 import foodapp.com.data.store.local.LocalDataStore
 import foodapp.com.data.store.remote.CloudDataStore

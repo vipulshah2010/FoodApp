@@ -98,8 +98,7 @@ class FoodListActivity : BaseActivity<ActivityFoodListBinding>() {
                     val p2 = Pair.create<View, String>(foodDescTextView, foodItem.foodDescription)
                     val p3 = Pair.create<View, String>(profileImageView, foodItem.profileImage)
                     val p4 = Pair.create<View, String>(heartImageView, foodItem.votes.toString())
-                    val options = ActivityOptionsCompat
-                            .makeSceneTransitionAnimation(this@FoodListActivity, p1, p2, p3, p4)
+                    val options = ActivityOptionsCompat.makeSceneTransitionAnimation(this@FoodListActivity, p1, p2, p3, p4)
 
                     startActivity(FoodDetailsActivity.newInstance(this@FoodListActivity,
                             foodItem.id), options.toBundle())

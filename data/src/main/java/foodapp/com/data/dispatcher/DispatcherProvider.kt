@@ -1,4 +1,4 @@
-package foodapp.com.data
+package foodapp.com.data.dispatcher
 
 import kotlinx.coroutines.CoroutineDispatcher
 

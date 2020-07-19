@@ -33,6 +33,16 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/../../Backbase/sadigital_bb_mobile_android/app/src/main/AndroidManifest.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../Backbase/sadigital_bb_mobile_android/app/src/main/res/navigation/nav_graph.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/build.gradle">
           <value>
             <set />
@@ -139,6 +149,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/foodapp/com/foodapp/ui/list/FoodListActivity.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/foodapp/com/foodapp/ui/list/FoodListAdapter.kt">
           <value>
             <set />
           </value>
@@ -259,6 +274,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/data/src/main/java/foodapp/com/data/di/RetrofitModule.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/data/src/main/java/foodapp/com/data/dispatcher/DispatcherProviderImpl.kt">
           <value>
             <set />
           </value>

@@ -1,6 +1,5 @@
-package foodapp.com.data.repository
+package foodapp.com.data.dispatcher
 
-import foodapp.com.data.DispatcherProvider
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import javax.inject.Inject
