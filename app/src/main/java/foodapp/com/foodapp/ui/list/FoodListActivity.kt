@@ -14,17 +14,15 @@ import androidx.lifecycle.Observer
 import dagger.hilt.android.AndroidEntryPoint
 import foodapp.com.data.FoodResult
 import foodapp.com.data.model.FoodItem
-import foodapp.com.foodapp.ErrorType
 import foodapp.com.foodapp.R
 import foodapp.com.foodapp.base.BaseActivity
 import foodapp.com.foodapp.databinding.ActivityFoodListBinding
 import foodapp.com.foodapp.ui.detail.FoodDetailsActivity
-import kotlinx.android.synthetic.main.activity_food_list.*
 
 @AndroidEntryPoint
 class FoodListActivity : BaseActivity<ActivityFoodListBinding>() {
 
-    private val viewModel: FoodListViewModel by viewModels()
+    private val viewModel: FoodViewModel by viewModels()
 
     private fun showLoading() {
         binding.foodListRecyclerView.visibility = View.GONE
@@ -36,10 +34,15 @@ class FoodListActivity : BaseActivity<ActivityFoodListBinding>() {
         binding.placeholderView.showProgress(false)
     }
 
-    private fun onError(type: ErrorType) {
+    private fun onError(throwable: Throwable) {
         binding.foodListRecyclerView.visibility = View.GONE
         binding.placeholderView.showEmptyView()
-        placeholderView.setContents(type.icon, type.title, type.subtitle, R.string.inv_try_again) {
+        val errorType = viewModel.parseError(throwable)
+        binding.placeholderView.setContents(errorType.icon,
+                errorType.title,
+                errorType.subtitle,
+                R.string.inv_try_again) {
+            viewModel.getFoodItems(true)
         }
     }
 
@@ -64,12 +67,14 @@ class FoodListActivity : BaseActivity<ActivityFoodListBinding>() {
 
         setupAdapter()
 
-        viewModel.loadFoodItems(true).observe(this, Observer {
+        viewModel.foodItemsLiveData.observe(this, Observer {
             when (it) {
-                FoodResult.Loading -> showLoading()
+                FoodResult.Loading -> {
+                    showLoading()
+                }
                 is FoodResult.Error -> {
                     hideLoading()
-                    onError(ErrorType.CLIENT_ERROR)
+                    onError(it.throwable)
                 }
                 is FoodResult.Success -> {
                     hideLoading()
@@ -77,6 +82,8 @@ class FoodListActivity : BaseActivity<ActivityFoodListBinding>() {
                 }
             }
         })
+
+        viewModel.getFoodItems(true)
     }
 
     private fun setupAdapter() {
@@ -91,9 +98,11 @@ class FoodListActivity : BaseActivity<ActivityFoodListBinding>() {
                     val p2 = Pair.create<View, String>(foodDescTextView, foodItem.foodDescription)
                     val p3 = Pair.create<View, String>(profileImageView, foodItem.profileImage)
                     val p4 = Pair.create<View, String>(heartImageView, foodItem.votes.toString())
-                    val options = ActivityOptionsCompat.makeSceneTransitionAnimation(this@FoodListActivity, p1, p2, p3, p4)
+                    val options = ActivityOptionsCompat
+                            .makeSceneTransitionAnimation(this@FoodListActivity, p1, p2, p3, p4)
 
-                    startActivity(FoodDetailsActivity.newInstance(this@FoodListActivity, foodItem), options.toBundle())
+                    startActivity(FoodDetailsActivity.newInstance(this@FoodListActivity,
+                            foodItem.id), options.toBundle())
                 })
     }
 

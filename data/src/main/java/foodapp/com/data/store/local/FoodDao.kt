@@ -19,5 +19,5 @@ interface FoodDao {
     fun insertAll(foodItems: List<FoodItem>)
 
     @Query("SELECT * FROM food_item WHERE id = :id")
-    fun getFoodItem(id: String): FoodItem
+    fun getFoodItem(id: Int): FoodItem
 }

@@ -7,5 +7,5 @@ class FoodUsecase @Inject constructor(private val foodRepository: FoodRepository
 
     fun getFoodItems(forceNetworkFetch: Boolean) = foodRepository.getFoodItems(forceNetworkFetch)
 
-    fun getFoodItem(id: String) = foodRepository.getFoodItem(id)
+    fun getFoodItem(id: Int) = foodRepository.getFoodItem(id)
 }

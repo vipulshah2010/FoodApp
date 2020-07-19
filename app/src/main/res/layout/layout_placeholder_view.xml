@@ -74,10 +74,8 @@
             android:id="@+id/actionButton"
             android:layout_width="@dimen/spacing_160"
             android:layout_height="@dimen/preferred_tap_target_size"
-            android:background="?android:attr/selectableItemBackground"
             android:text="@string/inv_try_again"
             android:textAllCaps="true"
-            android:textColor="@android:color/white"
             android:textSize="@dimen/text_size_14" />
     </FrameLayout>
 

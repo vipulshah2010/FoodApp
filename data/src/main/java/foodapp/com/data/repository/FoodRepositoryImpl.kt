@@ -14,7 +14,7 @@ constructor(private val localDataStore: LocalDataStore,
             private val remoteCloudDataStore: CloudDataStore,
             private val dispatcher: DispatcherProvider) : FoodRepository {
 
-    override fun getFoodItem(id: String) = localDataStore
+    override fun getFoodItem(id: Int) = localDataStore
             .getFoodItem(id)
             .map { FoodResult.Success((it)) }
             .flowOn(dispatcher.io)

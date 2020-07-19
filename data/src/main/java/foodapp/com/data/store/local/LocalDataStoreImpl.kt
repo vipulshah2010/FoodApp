@@ -18,7 +18,7 @@ class LocalDataStoreImpl @Inject constructor(private val mFoodDatabase: FoodData
         emit(mFoodDatabase.foodItemsDao().allFoodItems)
     }
 
-    override fun getFoodItem(id: String) = flow {
+    override fun getFoodItem(id: Int) = flow {
         emit(mFoodDatabase.foodItemsDao().getFoodItem(id))
     }
 }

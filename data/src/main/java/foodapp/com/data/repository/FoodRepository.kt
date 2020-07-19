@@ -7,5 +7,5 @@ import kotlinx.coroutines.flow.Flow
 interface FoodRepository {
     fun getFoodItems(forceNetworkFetch: Boolean): Flow<FoodResult<List<FoodItem>>>
 
-    fun getFoodItem(id: String): Flow<FoodResult<FoodItem>>
+    fun getFoodItem(id: Int): Flow<FoodResult<FoodItem>>
 }

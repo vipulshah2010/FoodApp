@@ -6,37 +6,47 @@ import android.content.Intent
 import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
 import android.os.Handler
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewAnimationUtils
 import android.view.animation.AnimationUtils
 import android.widget.FrameLayout
-import androidx.appcompat.app.AppCompatActivity
+import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.core.view.ViewCompat
+import androidx.lifecycle.Observer
 import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
+import dagger.hilt.android.AndroidEntryPoint
+import foodapp.com.data.FoodResult
 import foodapp.com.data.model.FoodItem
 import foodapp.com.foodapp.R
+import foodapp.com.foodapp.base.BaseActivity
+import foodapp.com.foodapp.databinding.ActivityFoodDetailsBinding
+import foodapp.com.foodapp.ui.list.FoodViewModel
 import foodapp.com.foodapp.ui.splash.HeroImageViewsAdapter
 import foodapp.com.foodapp.ui.views.AnimationEndListener
 import foodapp.com.foodapp.ui.views.CircleTransform
 import foodapp.com.foodapp.ui.views.DepthPageTransformer
 import foodapp.com.foodapp.ui.views.Utils
-import kotlinx.android.synthetic.main.activity_food_details.*
 import kotlin.math.hypot
 
-class FoodDetailsActivity : AppCompatActivity() {
+@AndroidEntryPoint
+class FoodDetailsActivity : BaseActivity<ActivityFoodDetailsBinding>() {
+
+    private val viewModel: FoodViewModel by viewModels()
 
     private var flag = true
 
     private var pixelDensity: Float = 0.toFloat()
 
     companion object {
-        private const val ARG_FOOD_ITEM = "food_item"
+        private const val ARG_FOOD_ID = "id"
 
-        fun newInstance(context: Context, foodItem: FoodItem): Intent {
+        fun newInstance(context: Context, id: Int): Intent {
             val intent = Intent(context, FoodDetailsActivity::class.java)
             val bundle = Bundle()
-            bundle.putParcelable(ARG_FOOD_ITEM, foodItem)
+            bundle.putInt(ARG_FOOD_ID, id)
             intent.putExtras(bundle)
             return intent
         }
@@ -44,108 +54,132 @@ class FoodDetailsActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_food_details)
 
         pixelDensity = resources.displayMetrics.density
 
-        val foodItem = intent.getParcelableExtra<FoodItem>(ARG_FOOD_ITEM)
+        val id = intent.getIntExtra(ARG_FOOD_ID, -1)
 
-        foodItem?.let { foodItem ->
-            Picasso.get().load(foodItem.profileImage).noFade().transform(CircleTransform()).into(profileImageView)
-            ViewCompat.setTransitionName(profileImageView, foodItem.profileImage)
-
-            supportPostponeEnterTransition()
-
-            Picasso.get().load(foodItem.heroImage).fit().noFade().placeholder(R.drawable.ic_svg_food).centerCrop().into(foodImageView, object : Callback {
-                override fun onError(e: Exception?) {
-                    supportStartPostponedEnterTransition()
+        viewModel.foodItemLiveData.observe(this, Observer {
+            when (it) {
+                is FoodResult.Error -> {
+                    Toast.makeText(this@FoodDetailsActivity, "Error!",
+                            Toast.LENGTH_SHORT).show()
                 }
+                is FoodResult.Success -> {
+                    onLoadFoodItem(it.data)
+                }
+            }
+        })
 
-                override fun onSuccess() {
-                    supportStartPostponedEnterTransition()
-                    Handler().postDelayed({
-                        if (foodImageView.drawable != null) {
-                            if (foodImageView.drawable is BitmapDrawable) {
-                                Utils.createPaletteAsync(this@FoodDetailsActivity,
-                                        (foodImageView.drawable as BitmapDrawable).bitmap)
+        takeIf { id != -1 }?.apply {
+            viewModel.getFoodItem(id)
+        }
+    }
+
+    private fun onLoadFoodItem(foodItem: FoodItem) {
+        Picasso.get().load(foodItem.profileImage)
+                .noFade()
+                .transform(CircleTransform())
+                .into(binding.profileImageView)
+        ViewCompat.setTransitionName(binding.profileImageView, foodItem.profileImage)
+
+        supportPostponeEnterTransition()
+
+        Picasso.get().load(foodItem.heroImage).fit()
+                .noFade()
+                .placeholder(R.drawable.ic_svg_food)
+                .centerCrop()
+                .into(binding.foodImageView, object : Callback {
+                    override fun onError(e: Exception?) {
+                        supportStartPostponedEnterTransition()
+                    }
+
+                    override fun onSuccess() {
+                        supportStartPostponedEnterTransition()
+                        Handler().postDelayed({
+                            if (binding.foodImageView.drawable != null) {
+                                if (binding.foodImageView.drawable is BitmapDrawable) {
+                                    Utils.createPaletteAsync(this@FoodDetailsActivity,
+                                            (binding.foodImageView.drawable as BitmapDrawable).bitmap)
+                                }
                             }
-                        }
-                    }, 200)
-                }
-            })
+                        }, 200)
+                    }
+                })
 
-            ViewCompat.setTransitionName(foodImageView, foodItem.heroImage)
+        ViewCompat.setTransitionName(binding.foodImageView, foodItem.heroImage)
 
-            foodDescTextView.text = foodItem.foodDescription
-            ViewCompat.setTransitionName(foodDescTextView, foodItem.foodDescription)
+        binding.foodDescTextView.text = foodItem.foodDescription
+        ViewCompat.setTransitionName(binding.foodDescTextView, foodItem.foodDescription)
 
-            ViewCompat.setTransitionName(votesButton, foodItem.votes.toString())
+        ViewCompat.setTransitionName(binding.votesButton, foodItem.votes.toString())
 
-            nameTextView.text = foodItem.name
+        binding.nameTextView.text = foodItem.name
 
-            dateTextView.text = foodItem.date
+        binding.dateTextView.text = foodItem.date
 
-            votesTextView.text = "${foodItem.votes}"
+        binding.votesTextView.text = "${foodItem.votes}"
 
-            dishesViewPager.setPageTransformer(true, DepthPageTransformer())
+        binding.dishesViewPager.setPageTransformer(true, DepthPageTransformer())
 
-            val fragmentManager = supportFragmentManager
-            dishesViewPager.adapter = HeroImageViewsAdapter(imagesUrls = foodItem.foodImages,
-                    manager = fragmentManager)
+        val fragmentManager = supportFragmentManager
+        binding.dishesViewPager.adapter = HeroImageViewsAdapter(imagesUrls = foodItem.foodImages,
+                manager = fragmentManager)
 
-            tabLayout.setupWithViewPager(dishesViewPager, true)
+        binding.tabLayout.setupWithViewPager(binding.dishesViewPager, true)
 
-            votesButton.setOnClickListener {
+        binding.votesButton.setOnClickListener {
 
-                var x = foodImageFrameLayout.right
-                val y = foodImageFrameLayout.bottom
-                x -= (28 * pixelDensity + 16 * pixelDensity).toInt()
+            var x = binding.foodImageFrameLayout.right
+            val y = binding.foodImageFrameLayout.bottom
+            x -= (28 * pixelDensity + 16 * pixelDensity).toInt()
 
-                val hypotenuse = hypot(foodImageFrameLayout.width.toDouble(),
-                        foodImageFrameLayout.height.toDouble()).toInt()
+            val hypotenuse = hypot(binding.foodImageFrameLayout.width.toDouble(),
+                    binding.foodImageFrameLayout.height.toDouble()).toInt()
 
-                if (flag) {
+            if (flag) {
 
-                    val parameters = linearView.layoutParams as FrameLayout.LayoutParams
-                    parameters.height = foodImageFrameLayout.height
-                    linearView.layoutParams = parameters
+                val parameters = binding.linearView.layoutParams as FrameLayout.LayoutParams
+                parameters.height = binding.foodImageFrameLayout.height
+                binding.linearView.layoutParams = parameters
 
-                    val anim = ViewAnimationUtils.createCircularReveal(linearView, x, y,
-                            0f, hypotenuse.toFloat())
-                    anim.duration = 700
+                val anim = ViewAnimationUtils.createCircularReveal(binding.linearView, x, y,
+                        0f, hypotenuse.toFloat())
+                anim.duration = 700
 
-                    anim.addListener(object : AnimationEndListener() {
-                        override fun onAnimationEnd(animator: Animator?) {
-                            layoutButtons.visibility = View.VISIBLE
-                            layoutButtons.startAnimation(AnimationUtils
-                                    .loadAnimation(this@FoodDetailsActivity,
-                                            R.anim.appear_alpha_anim))
-                        }
-                    })
+                anim.addListener(object : AnimationEndListener() {
+                    override fun onAnimationEnd(animator: Animator?) {
+                        binding.layoutButtons.visibility = View.VISIBLE
+                        binding.layoutButtons.startAnimation(AnimationUtils
+                                .loadAnimation(this@FoodDetailsActivity,
+                                        R.anim.appear_alpha_anim))
+                    }
+                })
 
-                    linearView.visibility = View.VISIBLE
-                    anim.start()
+                binding.linearView.visibility = View.VISIBLE
+                anim.start()
 
-                    flag = false
-                } else {
-                    val anim = ViewAnimationUtils.createCircularReveal(linearView, x, y,
-                            hypotenuse.toFloat(), 0f)
-                    anim.duration = 700
+                flag = false
+            } else {
+                val anim = ViewAnimationUtils.createCircularReveal(binding.linearView, x, y,
+                        hypotenuse.toFloat(), 0f)
+                anim.duration = 700
 
-                    anim.addListener(object : AnimationEndListener() {
-                        override fun onAnimationEnd(animator: Animator?) {
-                            linearView.visibility = View.GONE
-                        }
-                    })
+                anim.addListener(object : AnimationEndListener() {
+                    override fun onAnimationEnd(animator: Animator?) {
+                        binding.linearView.visibility = View.GONE
+                    }
+                })
 
-                    layoutButtons.visibility = View.GONE
-                    layoutButtons.startAnimation(AnimationUtils
-                            .loadAnimation(this@FoodDetailsActivity,
-                                    R.anim.disappear_alpha_anim))
-                    anim.start()
-                    flag = true
-                }
+                binding.layoutButtons.visibility = View.GONE
+                binding.layoutButtons.startAnimation(AnimationUtils
+                        .loadAnimation(this@FoodDetailsActivity,
+                                R.anim.disappear_alpha_anim))
+                anim.start()
+                flag = true
             }
         }
     }
+
+    override fun getBinding(inflater: LayoutInflater) = ActivityFoodDetailsBinding.inflate(inflater)
 }

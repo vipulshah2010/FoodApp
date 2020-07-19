@@ -3,8 +3,9 @@ package foodapp.com.foodapp.ui.splash
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.animation.ValueAnimator
+import android.graphics.BlendMode
+import android.graphics.BlendModeColorFilter
 import android.graphics.Color
-import android.graphics.PorterDuff
 import android.os.Bundle
 import android.os.Handler
 import android.view.LayoutInflater
@@ -104,8 +105,8 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>() {
 
     private fun showProgressDialog() {
         binding.progressBar.alpha = 1f
-        binding.progressBar.indeterminateDrawable
-                .setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_IN)
+        binding.progressBar.indeterminateDrawable.colorFilter =
+                BlendModeColorFilter(Color.WHITE, BlendMode.SRC_IN)
         binding.progressBar.visibility = View.VISIBLE
     }
 
