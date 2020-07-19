@@ -1,8 +1,10 @@
 package foodapp.com.foodapp.ui.list
 
-import androidx.hilt.Assisted
 import androidx.hilt.lifecycle.ViewModelInject
-import androidx.lifecycle.*
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import foodapp.com.data.FoodResult
 import foodapp.com.data.model.FoodItem
 import foodapp.com.data.network.utils.ErrorUtils
@@ -15,8 +17,7 @@ import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
 
 class FoodViewModel @ViewModelInject constructor(
-        private val usecase: FoodUsecase,
-        @Assisted private val savedStateHandle: SavedStateHandle) : ViewModel() {
+        private val usecase: FoodUsecase) : ViewModel() {
 
     private var _foodItemsLiveData = MutableLiveData<FoodResult<List<FoodItem>>>()
     private var _foodItemLiveData = MutableLiveData<FoodResult<FoodItem>>()
@@ -53,11 +54,11 @@ class FoodViewModel @ViewModelInject constructor(
     }
 
     fun parseError(throwable: Throwable) = when {
-        ErrorUtils.isConnectionError(throwable) -> {
-            ErrorType.CONNECTION_ERROR
-        }
         ErrorUtils.isTimeOut(throwable) -> {
             ErrorType.TIMEOUT_ERROR
+        }
+        ErrorUtils.isConnectionError(throwable) -> {
+            ErrorType.CONNECTION_ERROR
         }
         else -> {
             ErrorType.GENERIC_ERROR

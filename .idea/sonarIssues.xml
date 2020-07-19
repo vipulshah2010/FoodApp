@@ -8,6 +8,16 @@
             <set />
           </value>
         </entry>
+        <entry key="$APPLICATION_CONFIG_DIR$/scratches/scratch.kts">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../Backbase/AppAuth-Android/app/java/net/openid/appauthdemo/AuthStateManager.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/../../Backbase/business-banking-collection-android/accesscontrol-capability/src/test/java/com/backbase/business/collection/capability/accesscontrol/viewmodel/AccessControlViewModelTest.kt">
           <value>
             <set />
@@ -204,6 +214,41 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/res/layout/layout_placeholder_view.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/test/java/foodapp/com/foodapp/test/CoroutinesTest.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/test/java/foodapp/com/foodapp/test/InstantTaskExecutorExtension.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/test/java/foodapp/com/foodapp/test/LiveDataExtension.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/test/java/foodapp/com/foodapp/test/MockData.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/test/java/foodapp/com/foodapp/test/MockFactory.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/test/java/foodapp/com/foodapp/ui/list/FoodViewModelTest.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/test/java/foodapp/com/foodapp/viewmodel/FoodViewModelTest.kt">
           <value>
             <set />
           </value>

@@ -79,6 +79,7 @@ internal fun Project.configureCommonDependencies() {
             add("implementation", Deps.fragmentTesting)
             add("testImplementation", Deps.archCoreTesting)
             add("testImplementation", Deps.roomTesting)
+            add("testImplementation", Deps.truth)
             add("implementation", Deps.testCoreDep)
             add("androidTestImplementation", Deps.espresso)
             add("androidTestImplementation", Deps.espressoContrib)
