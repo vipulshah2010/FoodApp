@@ -25,7 +25,7 @@ object Deps {
 
     // generic
     private const val epoxyVersion = "3.11.0"
-    private const val picassoVersion = "2.71828"
+    private const val coilVersion = "0.11.0"
 
     // test
     private const val testCore = "1.2.0"
@@ -68,7 +68,7 @@ object Deps {
     const val cardView = "androidx.cardview:cardview:1.0.0"
     const val circleImage = "de.hdodenhof:circleimageview:3.1.0"
     const val constraint = "androidx.constraintlayout:constraintlayout:1.1.3"
-    const val material = "com.google.android.material:material:1.1.0"
+    const val material = "com.google.android.material:material:1.2.0-rc01"
     const val skeletonLoading = "com.facebook.shimmer:shimmer:0.5.0"
 
     // retrofit
@@ -79,7 +79,7 @@ object Deps {
     // generic
     const val commonsLang = "org.apache.commons:commons-lang3:3.10"
     const val gson = "com.google.code.gson:gson:2.8.6"
-    const val picasso = "com.squareup.picasso:picasso:$picassoVersion"
+    const val coil = "io.coil-kt:coil:$coilVersion"
 
     // test
     const val fragmentTesting = "androidx.fragment:fragment-testing:$fragmentVersion"
@@ -89,8 +89,12 @@ object Deps {
     const val espressoContrib = "androidx.test.espresso:espresso-contrib:$testEspressoVersion"
     const val espressoIdling = "androidx.test.espresso.idling:idling-concurrent:$testEspressoVersion"
     const val espressoIntents = "androidx.test.espresso:espresso-intents:$testEspressoVersion"
+
     const val jU5api = "org.junit.jupiter:junit-jupiter-api:$testJU5Version"
     const val jU5Engine = "org.junit.jupiter:junit-jupiter-engine:$testJU5Version"
+    const val jU5TestCore = "de.mannodermaus.junit5:android-test-core:$testCore"
+    const val jU5TestRunner = "de.mannodermaus.junit5:android-test-runner:$testCore"
+
     const val jUnitExt = "androidx.test.ext:junit:1.1.1"
     const val mockk = "io.mockk:mockk:1.10.0"
     const val orchestrator = "androidx.test:orchestrator:$testCore"

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/splashFragment">
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="foodapp.com.foodapp.ui.splash.SplashFragment"
+        android:label="SplashFragment"
+        tools:layout="@layout/fragment_splash">
+        <action
+            android:id="@+id/splash_to_dashboard"
+            app:destination="@id/dashboardFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/dashboardFragment"
+        android:name="foodapp.com.foodapp.ui.list.DashboardFragment"
+        android:label="DashboardFragment">
+        <action
+            android:id="@+id/dashboard_to_detail"
+            app:destination="@id/detailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="foodapp.com.foodapp.ui.detail.DetailFragment"
+        android:label="DetailFragment">
+        <argument
+            android:name="foodID"
+            app:argType="integer" />
+    </fragment>
+</navigation>

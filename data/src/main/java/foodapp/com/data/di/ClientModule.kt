@@ -6,8 +6,6 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ApplicationComponent
 import foodapp.com.data.BuildConfig
 import foodapp.com.data.network.utils.ByteUtils
-import foodapp.com.data.qualifiers.NetworkConnectTimeout
-import foodapp.com.data.qualifiers.NetworkReadTimeout
 import okhttp3.OkHttpClient
 import okhttp3.OkHttpClient.Builder
 import okhttp3.logging.HttpLoggingInterceptor
@@ -17,11 +15,6 @@ import javax.inject.Named
 @Module
 @InstallIn(ApplicationComponent::class)
 object ClientModule {
-
-    val isDebug: Boolean
-        @Named("isDebug")
-        @Provides
-        get() = BuildConfig.DEBUG
 
     @Named("cacheSize")
     @Provides
@@ -47,38 +40,18 @@ object ClientModule {
         return 1
     }
 
-    @NetworkConnectTimeout
     @Provides
-    fun networkConnectTimeoutInSeconds(): Int {
-        return 60
-    }
-
-    @NetworkReadTimeout
-    @Provides
-    fun networkReadTimeoutInSeconds(): Int {
-        return 60
-    }
-
-    @Provides
-    fun provideOkHttpClient(loggingInterceptor: HttpLoggingInterceptor,
-                            @NetworkConnectTimeout networkConnectTimeoutInSeconds: Int,
-                            @NetworkReadTimeout networkReadTimeoutInSeconds: Int,
-                            @Named("isDebug") isDebug: Boolean): OkHttpClient {
-
+    fun provideOkHttpClient(): OkHttpClient {
         val okHttpClient = Builder()
-                .readTimeout(networkReadTimeoutInSeconds.toLong(), TimeUnit.SECONDS)
-                .connectTimeout(networkConnectTimeoutInSeconds.toLong(), TimeUnit.SECONDS)
+                .readTimeout(60, TimeUnit.SECONDS)
+                .connectTimeout(60, TimeUnit.SECONDS)
 
         //show logs if app is in Debug mode
-        if (isDebug) okHttpClient.addInterceptor(loggingInterceptor)
+        if (BuildConfig.DEBUG)
+            okHttpClient.addInterceptor(HttpLoggingInterceptor().apply {
+                level = HttpLoggingInterceptor.Level.BODY
+            })
 
         return okHttpClient.build()
-    }
-
-    @Provides
-    fun provideHttpLoggingInterceptor(): HttpLoggingInterceptor {
-        val logging = HttpLoggingInterceptor()
-        logging.level = HttpLoggingInterceptor.Level.BODY
-        return logging
     }
 }

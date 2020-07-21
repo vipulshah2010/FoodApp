@@ -23,7 +23,7 @@ abstract class BaseFragment<VB : ViewBinding> : Fragment() {
 
     protected abstract fun getBinding(
             inflater: LayoutInflater,
-            container: ViewGroup?, savedInstanceState: Bundle?
+            container: ViewGroup?, bundle: Bundle?
     ): VB
 
     override fun onDestroyView() {

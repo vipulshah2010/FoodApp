@@ -45,7 +45,9 @@ class FoodViewModel @ViewModelInject constructor(
     fun getFoodItem(id: Int) {
         viewModelScope.launch {
             usecase.getFoodItem(id)
-                    .catch {
+                    .onStart {
+                        _foodItemLiveData.value = FoodResult.Loading
+                    }.catch {
                         _foodItemLiveData.value = FoodResult.Error(it)
                     }.collect {
                         _foodItemLiveData.value = it

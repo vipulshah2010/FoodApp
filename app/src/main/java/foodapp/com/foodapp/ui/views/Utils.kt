@@ -17,7 +17,7 @@ object Utils {
                     val vibrant = palette.darkVibrantSwatch
                     val color = vibrant?.rgb
                             ?: ContextCompat.getColor(activity, R.color.colorPrimaryDark)
-                    Utils.darkenStatusBar(activity, color = color)
+                    darkenStatusBar(activity, color = color)
                 }
             }
         }

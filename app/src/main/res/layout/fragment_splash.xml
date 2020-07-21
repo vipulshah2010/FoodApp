@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context=".ui.splash.SplashFragment">
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/splashViewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_margin="@dimen/spacing_20"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:id="@+id/startButton"
+            android:layout_width="@dimen/spacing_150"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/sign_in_btn"
+            android:clickable="true"
+            android:elevation="@dimen/spacing_4"
+            android:focusable="true"
+            android:foreground="?selectableItemBackground"
+            android:minHeight="@dimen/spacing_50">
+
+            <TextView
+                android:id="@+id/buttonText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/start"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/text_size_18" />
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="@dimen/spacing_36"
+                android:layout_height="@dimen/spacing_36"
+                android:layout_gravity="center"
+                android:visibility="invisible" />
+
+        </FrameLayout>
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/spacing_16"
+            android:background="@android:color/transparent"
+            app:tabBackground="@drawable/tab_selector"
+            app:tabGravity="center"
+            app:tabIndicatorHeight="0dp" />
+
+    </LinearLayout>
+
+</FrameLayout>

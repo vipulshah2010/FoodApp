@@ -1,64 +1,92 @@
 package foodapp.com.foodapp.ui.splash
 
+import android.animation.Animator
+import android.animation.AnimatorListenerAdapter
+import android.animation.ValueAnimator
+import android.graphics.Color
+import android.graphics.PorterDuff
 import android.os.Bundle
-import android.text.TextUtils
+import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.annotation.DrawableRes
-import androidx.core.app.ActivityOptionsCompat
-import androidx.core.view.ViewCompat
-import com.squareup.picasso.Picasso
+import androidx.navigation.fragment.findNavController
+import androidx.viewpager.widget.ViewPager
+import dagger.hilt.android.AndroidEntryPoint
+import foodapp.com.foodapp.R
 import foodapp.com.foodapp.base.BaseFragment
-import foodapp.com.foodapp.databinding.FragmentHeroImageBinding
+import foodapp.com.foodapp.databinding.FragmentSplashBinding
+import javax.inject.Inject
 
-class SplashFragment : BaseFragment<FragmentHeroImageBinding>() {
+@AndroidEntryPoint
+class SplashFragment : BaseFragment<FragmentSplashBinding>() {
 
-    companion object {
-        const val ARG_IMAGE_RES = "image_res"
-        const val ARG_IMAGE_URL = "image_url"
+    @Inject
+    lateinit var mAdapter: SplashViewPager
 
-        fun newInstance(@DrawableRes imageRes: Int = -1, imageUrl: String = ""): SplashFragment {
-            val fragment = SplashFragment()
-            val bundle = Bundle()
-            if (imageRes != -1) {
-                bundle.putInt(ARG_IMAGE_RES, imageRes)
-            }
-            if (!TextUtils.isEmpty(imageUrl)) {
-                bundle.putString(ARG_IMAGE_URL, imageUrl)
-            }
-            fragment.arguments = bundle
-            return fragment
-        }
-    }
+    @Inject
+    lateinit var mPageTransformer: ViewPager.PageTransformer
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        if (requireArguments().containsKey(ARG_IMAGE_RES)) {
-            val imageRes = requireArguments().getInt(ARG_IMAGE_RES)
-            Picasso.get().load(imageRes).fit().noFade().centerCrop().into(binding.heroImageView)
-            return
-        }
+        binding.splashViewPager.setPageTransformer(true, mPageTransformer)
+        binding.splashViewPager.adapter = mAdapter
+        binding.tabLayout.setupWithViewPager(binding.splashViewPager, true)
 
-        if (requireArguments().containsKey(ARG_IMAGE_URL)) {
-            val imageUrl = requireArguments().getString(ARG_IMAGE_URL)
-            ViewCompat.setTransitionName(binding.heroImageView, imageUrl)
-            Picasso.get().load(imageUrl).fit().noFade().centerCrop().into(binding.heroImageView)
-
-            view.setOnClickListener {
-                activity?.let {
-                    val p1 = androidx.core.util.Pair.create<View, String>(binding.heroImageView, imageUrl)
-                    val options = ActivityOptionsCompat.makeSceneTransitionAnimation(it, p1)
-                    //startActivity(DishDetailsActivity.newInstance(it, imageUrl), options.toBundle())
-                }
-            }
-            return
+        binding.startButton.setOnClickListener {
+            animateButton()
+            fadeTextAndShowProgress()
+            handleNext()
         }
     }
 
-    override fun getBinding(inflater: LayoutInflater, container: ViewGroup?,
-                            savedInstanceState: Bundle?): FragmentHeroImageBinding {
-        return FragmentHeroImageBinding.inflate(inflater, container, false)
+    private fun handleNext() {
+        Handler().postDelayed({
+            binding.progressBar.animate().alpha(0f).setDuration(200).start()
+
+            Handler().postDelayed({
+                findNavController().navigate(R.id.splash_to_dashboard)
+            }, 100)
+        }, 2000)
     }
+
+    private fun getFabWidth(): Int {
+        return resources.getDimension(R.dimen.fab_size).toInt()
+    }
+
+    private fun fadeTextAndShowProgress() {
+        binding.buttonText.animate().alpha(0f)
+                .setDuration(250)
+                .setListener(object : AnimatorListenerAdapter() {
+                    override fun onAnimationEnd(animation: Animator) {
+                        super.onAnimationEnd(animation)
+                        showProgressDialog()
+                    }
+                })
+                .start()
+    }
+
+    private fun showProgressDialog() {
+        binding.progressBar.alpha = 1f
+        binding.progressBar.indeterminateDrawable
+                .setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_IN)
+        binding.progressBar.visibility = View.VISIBLE
+    }
+
+    private fun animateButton() {
+        val anim = ValueAnimator.ofInt(binding.startButton.measuredWidth, getFabWidth())
+
+        anim.addUpdateListener { valueAnimator ->
+            val value = valueAnimator.animatedValue as Int
+            val layoutParams = binding.startButton.layoutParams
+            layoutParams.width = value
+            binding.startButton.requestLayout()
+        }
+        anim.duration = 250
+        anim.start()
+    }
+
+    override fun getBinding(inflater: LayoutInflater, container: ViewGroup?, bundle: Bundle?) =
+            FragmentSplashBinding.inflate(inflater, container, false)
 }

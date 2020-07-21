@@ -30,8 +30,18 @@ It showcase Usecase and Repository architecture pattern for loading data from ne
 - [Retrofit2 & OkHttp3](https://github.com/square/retrofit) - construct the REST APIs and paging network data.
 - [Retrofit](https://square.github.io/retrofit/) - A type-safe HTTP client for Android and Java.
 - [Gson](https://github.com/google/gson) - JSON library for Kotlin and Java.
-- [Picasso](https://square.github.io/picasso/)
+- [coil](https://github.com/coil-kt/coil)
 - [Material-Components](https://github.com/material-components/material-components-android) - Material design components like ripple animation, cardView.
+
+## Code Coverage and Reporting
+ - This project uses Jacoco configuration to measure code coverage and currently the most widely used.
+ - SonarQube is used for inspecting the Code Quality and Security codebase. 
+ - SonarQube consumes Jacoco test coverage report and displays it on [sonarcloud](https://sonarcloud.io/dashboard?id=vipulshah2010_FoodApp)
+
+**Run following command from root folder to generate JaCoco reports and view test coverage on** [sonarcloud](https://sonarcloud.io/dashboard?id=vipulshah2010_FoodApp)
+ ```
+./gradlew clean jacocoTestDebugUnitTestReport sonarqube
+```
 
 ## Planned workflow:
 - More unit test coverage

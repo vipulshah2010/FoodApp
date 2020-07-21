@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="6acb692f-7fce-4dcc-beec-caf32535830e" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../.idea/kotlinScripting.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../app/build.gradle.kts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../build.gradle.kts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../data/build.gradle.kts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../domain/build.gradle.kts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../settings.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/sonarIssues.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/sonarIssues.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/build.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/proguard-rules.pro" beforeDir="false" afterPath="$PROJECT_DIR$/../app/proguard-rules.pro" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/src/test/java/foodapp/com/foodapp/viewmodel/FoodViewModelTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../app/src/test/java/foodapp/com/foodapp/viewmodel/FoodViewModelTest.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../build.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/FoodAppPlugin.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/FoodAppPlugin.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../data/build.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../data/proguard-rules.pro" beforeDir="false" afterPath="$PROJECT_DIR$/../data/proguard-rules.pro" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../domain/build.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../domain/proguard-rules.pro" beforeDir="false" afterPath="$PROJECT_DIR$/../domain/proguard-rules.pro" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../settings.gradle" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="1ey8dPmmu8GJoWxU8LVX6HE6x01" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="show.unlinked.gradle.project.popup" value="true" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="6acb692f-7fce-4dcc-beec-caf32535830e" name="Default Changelist" comment="" />
+      <created>1595282558372</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1595282558372</updated>
+    </task>
+    <servers />
+  </component>
+</project>
