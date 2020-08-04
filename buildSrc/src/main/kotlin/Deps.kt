@@ -32,6 +32,7 @@ object Deps {
     private const val testEspressoVersion = "3.2.0"
     private const val testJU5Version = "5.6.2"
     private const val truthVersion = "1.0.1"
+    private const val turbineVersion = "0.1.1"
 
     /********************** Dependencies **********************/
 
@@ -103,5 +104,6 @@ object Deps {
     const val uiAutomator = "androidx.test.uiautomator:uiautomator:2.2.0"
     const val roomTesting = "androidx.room:room-testing:$roomVersion"
     const val truth = "com.google.truth:truth:$truthVersion"
+    const val turbine = "app.cash.turbine:turbine:$turbineVersion"
 
 }

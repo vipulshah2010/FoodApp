@@ -1,5 +1,6 @@
 package foodapp.com.data.repository
 
+import app.cash.turbine.test
 import com.google.common.truth.Truth
 import foodapp.com.data.FoodDatabase
 import foodapp.com.data.FoodResult
@@ -17,7 +18,6 @@ import io.mockk.*
 import io.mockk.impl.annotations.MockK
 import io.mockk.junit5.MockKExtension
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.test.TestCoroutineDispatcher
 import kotlinx.coroutines.test.TestCoroutineScope
 import kotlinx.coroutines.test.runBlockingTest
@@ -25,8 +25,10 @@ import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestInstance
 import org.junit.jupiter.api.extension.ExtendWith
+import kotlin.time.ExperimentalTime
 
 @ExperimentalCoroutinesApi
+@ExperimentalTime
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @ExtendWith(MockKExtension::class)
 internal class FoodRepositoryTest : CoroutineTest {
@@ -64,9 +66,10 @@ internal class FoodRepositoryTest : CoroutineTest {
         coEvery { restApi.getFoodItems() } returns MockData.foodItems
         every { foodDao.insertAll(capture(foodItemsSlot)) } just runs
 
-        repository.getFoodItems(true).collect {
-            Truth.assertThat(it).isInstanceOf(FoodResult.Success::class.java)
+        repository.getFoodItems(true).test {
+            Truth.assertThat(expectItem()).isInstanceOf(FoodResult.Success::class.java)
             Truth.assertThat(foodItemsSlot.captured.size).isEqualTo(3)
+            expectComplete()
         }
     }
 
@@ -76,9 +79,11 @@ internal class FoodRepositoryTest : CoroutineTest {
         coEvery { foodDao.allFoodItems } returns MockData.foodItems.fooditems
         every { foodDao.insertAll(capture(foodItemsSlot)) } just runs
 
-        repository.getFoodItems(false).collect {
-            Truth.assertThat(it).isInstanceOf(FoodResult.Success::class.java)
-            Truth.assertThat((it as FoodResult.Success).data).hasSize(3)
+        repository.getFoodItems(false).test {
+            val item = expectItem()
+            Truth.assertThat(item).isInstanceOf(FoodResult.Success::class.java)
+            Truth.assertThat((item as FoodResult.Success).data).hasSize(3)
+            expectComplete()
         }
     }
 
@@ -89,9 +94,10 @@ internal class FoodRepositoryTest : CoroutineTest {
         coEvery { foodDao.allFoodItems } returns MockData.emptyFoodIItems.fooditems
         every { foodDao.insertAll(capture(foodItemsSlot)) } just runs
 
-        repository.getFoodItems(false).collect {
-            Truth.assertThat(it).isInstanceOf(FoodResult.Success::class.java)
+        repository.getFoodItems(false).test {
+            Truth.assertThat(expectItem()).isInstanceOf(FoodResult.Success::class.java)
             Truth.assertThat(foodItemsSlot.captured.size).isEqualTo(3)
+            expectComplete()
         }
     }
 
@@ -100,9 +106,10 @@ internal class FoodRepositoryTest : CoroutineTest {
         val foodItemIdSlot = slot<Int>()
         every { foodDao.getFoodItem(capture(foodItemIdSlot)) } returns MockData.foodItem
 
-        repository.getFoodItem(1).collect {
-            Truth.assertThat(it).isInstanceOf(FoodResult.Success::class.java)
+        repository.getFoodItem(1).test {
+            Truth.assertThat(expectItem()).isInstanceOf(FoodResult.Success::class.java)
             Truth.assertThat(foodItemIdSlot.captured).isEqualTo(1)
+            expectComplete()
         }
     }
 }

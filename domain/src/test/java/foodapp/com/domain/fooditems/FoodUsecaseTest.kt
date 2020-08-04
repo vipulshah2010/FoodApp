@@ -33,10 +33,10 @@ internal class FoodUsecaseTest : CoroutineTest {
     override lateinit var dispatcher: TestCoroutineDispatcher
     override lateinit var testScope: TestCoroutineScope
 
-    @MockK
+    @MockK(relaxed = true)
     lateinit var localDataStore: LocalDataStore
 
-    @MockK
+    @MockK(relaxed = true)
     lateinit var remoteCloudDataStore: CloudDataStore
 
     private lateinit var repository: FoodRepository
@@ -49,10 +49,6 @@ internal class FoodUsecaseTest : CoroutineTest {
 
     @Test
     fun `Test usecase getFoodItems request calls repository`() = dispatcher.runBlockingTest {
-        every { repository.getFoodItems(true) } answers {
-            flow { emit(MockFactory.generateFoodItems(exception = false)) }
-        }
-
         val usecase = FoodUsecase(repository)
         usecase.getFoodItems(true)
         verify(exactly = 1) { repository.getFoodItems(true) }

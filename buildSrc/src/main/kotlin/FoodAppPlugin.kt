@@ -101,6 +101,12 @@ internal fun Project.configureCommonDependencies() {
 
     extensions.getByType<BaseExtension>().run {
         dependencies {
+
+            add("kapt", Deps.hiltCompiler)
+            add("kapt", Deps.lifecycleCompiler)
+            add("kapt", Deps.hiltViewModelCompiler)
+            add("kapt", Deps.roomCompiler)
+
             add("implementation", Deps.coroutine)
             add("implementation", Deps.coroutineCore)
             add("implementation", Deps.coroutineTest)
@@ -111,7 +117,7 @@ internal fun Project.configureCommonDependencies() {
             add("implementation", Deps.fragment)
             add("implementation", Deps.liveData)
             add("implementation", Deps.lifecycleCommon)
-            add("kapt", Deps.lifecycleCompiler)
+
             add("implementation", Deps.lifecycleExt)
             add("implementation", Deps.lifecycleViewModel)
             add("implementation", Deps.navigationFragment)
@@ -126,36 +132,41 @@ internal fun Project.configureCommonDependencies() {
             add("implementation", Deps.commonsLang)
             add("implementation", Deps.gson)
             add("implementation", Deps.hilt)
-            add("kapt", Deps.hiltCompiler)
             add("implementation", Deps.hiltViewModel)
-            add("kapt", Deps.hiltViewModelCompiler)
+
             add("implementation", Deps.room)
             add("implementation", Deps.roomKtx)
-            add("kapt", Deps.roomCompiler)
+
             add("implementation", Deps.retrofit)
             add("implementation", Deps.converter)
             add("implementation", Deps.retrofitInterceptor)
             add("implementation", Deps.coil)
 
             add("debugImplementation", Deps.fragmentTesting)
-            add("testImplementation", Deps.archCoreTesting)
-            add("testImplementation", Deps.roomTesting)
-            add("testImplementation", Deps.truth)
+
             add("implementation", Deps.testCoreDep)
+
             add("androidTestImplementation", Deps.espresso)
             add("androidTestImplementation", Deps.espressoContrib)
             add("androidTestImplementation", Deps.espressoIdling)
             add("androidTestImplementation", Deps.espressoIntents)
-            add("testImplementation", Deps.jU5api)
-            add("testRuntimeOnly", Deps.jU5Engine)
             add("androidTestImplementation", Deps.jU5TestCore)
-            add("androidTestRuntimeOnly", Deps.jU5TestRunner)
             add("androidTestImplementation", Deps.jUnitExt)
-            add("testImplementation", Deps.mockk)
-            add("androidTestUtil", Deps.orchestrator)
             add("androidTestImplementation", Deps.rules)
             add("androidTestImplementation", Deps.runner)
             add("androidTestImplementation", Deps.uiAutomator)
+
+            add("testRuntimeOnly", Deps.jU5Engine)
+            add("testRuntimeOnly", Deps.jU5Engine)
+            add("androidTestRuntimeOnly", Deps.jU5TestRunner)
+            add("androidTestUtil", Deps.orchestrator)
+
+            add("testImplementation", Deps.archCoreTesting)
+            add("testImplementation", Deps.roomTesting)
+            add("testImplementation", Deps.truth)
+            add("testImplementation", Deps.mockk)
+            add("testImplementation", Deps.jU5api)
+            add("testImplementation", Deps.turbine)
         }
     }
 }
